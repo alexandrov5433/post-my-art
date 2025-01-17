@@ -1,0 +1,35 @@
+:root {
+    --background: #f8f8f8;
+    --elements-main: #ffffff;
+    --elements-emphasis: #e0e0e0;
+    
+    /* nav and header */
+    --nav-main: #ffffff;
+    --nav-separator: #edefee;
+    
+    /* buttons and clickable elements */
+    --btn-red: #bd362f;
+    --btn-white: #ffffff;
+
+    /* text */
+    --text-main: #202932;
+    --text-second: #333;
+    --text-third: #6f6f6f;
+
+    /* footer */
+    --footer-background: #15151e;
+    --footer-darker-background: #111;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-main);
+}
+
+p {
+    color: var(--text-second);
+}

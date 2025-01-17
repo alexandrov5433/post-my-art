@@ -1,0 +1,44 @@
+.container {
+    background-color: var(--elements-emphasis);
+    border-radius: 40px;
+    width: 25dvw;
+    width: 25vw;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .imageContainer {
+        height: fit-content;
+        width: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.4rem;
+
+        .imageElem {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+    
+    .search {
+        background-color: inherit;
+        font-size: 0.8rem;
+        color: var(--text-second);
+        width: clamp( 4rem, 80%, 18rem);
+        height: 2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        width: 75vw;
+        justify-content: flex-start;
+
+        .imageContainer {
+            width: 5%;
+        }
+    }
+}

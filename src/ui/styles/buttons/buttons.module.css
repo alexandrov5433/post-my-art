@@ -1,0 +1,29 @@
+
+.btn {
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    border-radius: 40px;
+    border: 0.15rem solid var(--btn-red);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.generic {
+    background-color: var(--btn-red);
+    color: var(--btn-white);
+
+    &:active {
+        box-shadow: inset 0.1rem 0.1rem 0.5rem 0.01rem var(--text-third);
+    }
+}
+
+
+.outline {
+    background-color: transparent;
+    color: var(--btn-red);
+    
+    &:active {
+        box-shadow: inset 0.1rem 0.1rem 0.5rem 0.01rem var(--text-third);
+    }
+}
+
