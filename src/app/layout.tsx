@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/ui/styles/global/color.css";
 import "@/ui/styles/global/reset.css"
 import "@/ui/styles/global/typography.css"
-import { roboto } from "@/ui/fonts";
+import { roboto, charm } from "@/ui/fonts";
 import NavBar from "@/ui/nav";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${charm.variable}`}>
       <body>
         <NavBar></NavBar>
         {children}

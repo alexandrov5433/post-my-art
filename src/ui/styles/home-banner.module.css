@@ -1,0 +1,35 @@
+.homeBannerWrapper {
+    /* border: 1px solid red; */
+    height: 55vh;
+    overflow: hidden;
+    display: grid;
+    grid-template: 100% / 100%;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        grid-area: 1 / 1 / 2 / 2;
+        z-index: 1;
+    }
+    
+    .imageOverlay {
+        display: grid;
+        grid-area: 1 / 1 / 2 / 2;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    .content {
+        border: 1px solid greenyellow;
+        height: 100%;
+        grid-area: 1 / 1 / 2 / 2;
+        z-index: 3;
+        justify-items: center;
+        align-content: center;
+
+        h2 {
+            color: var(--btn-white);
+            font-family: var(--font-charm);
+        }
+    }
+}
