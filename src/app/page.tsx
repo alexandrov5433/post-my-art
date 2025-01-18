@@ -2,7 +2,6 @@ import Image from "next/image";
 import styles from '@/ui/styles/home-banner.module.css';
 import home_banner from '../../public/home_banner.jpg';
 import Button from "@/ui/buttons/button";
-import { charm } from "@/ui/fonts";
 
 export default function Home() {
   return (
