@@ -1,18 +1,24 @@
 import Image from "next/image";
-import styles from '@/ui/styles/home-banner.module.css';
+import homeBannerStyles from '@/ui/styles/home-banner.module.css';
 import home_banner from '../../public/home_banner.jpg';
-import Button from "@/ui/buttons/button";
+import Button from "@/ui/button";
+import artsContainerStyles from '@/ui/styles/home-arts-container.module.css';
+import { fetchArtCards } from "@/lib/data";
+import { ArtCardData } from "@/lib/definitions";
+import ArtCard from "@/ui/art-card";
 
-export default function Home() {
+export default async function Home() {
+  const artCards: ArtCardData[] = await fetchArtCards(10);
   return (
     <main>
-      <div className={`${styles.homeBannerWrapper}`}>
+
+      <section className={`${homeBannerStyles.homeBannerWrapper}`}>
         <Image
           src={home_banner}
           alt="A beautiful painting. A classical work."
         ></Image>
-        <div className={`${styles.imageOverlay}`}>
-          <div className={`${styles.content}`}>
+        <div className={`${homeBannerStyles.imageOverlay}`}>
+          <div className={`${homeBannerStyles.content}`}>
             <h2>Made with passion.</h2>
             <Button
               type="button"
@@ -20,7 +26,17 @@ export default function Home() {
               stylingType="generic"></Button>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className={`${artsContainerStyles.homeArtsContainer}`}>
+        <div className={`${artsContainerStyles.cardsContainer}`}>
+          {artCards.map(c => ArtCard(c))}
+        </div>
+        <div className={`${artsContainerStyles.bottomButtonContainer}`}>
+            <Button type="button" stylingType="generic" title="TO DO"></Button>
+        </div>
+      </section>
+
     </main>
   );
 }

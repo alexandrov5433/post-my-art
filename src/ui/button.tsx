@@ -1,4 +1,4 @@
-import styles from '@/ui/styles/buttons/buttons.module.css';
+import styles from '@/ui/styles/button.module.css';
 
 export default function Button({
     title,
@@ -7,7 +7,7 @@ export default function Button({
 }: {
     title: string,
     type: 'button' | 'submit',
-    stylingType: 'generic' | 'outline'
+    stylingType: 'generic' | 'outline' | 'follow'
 }) {
     return (
         <button

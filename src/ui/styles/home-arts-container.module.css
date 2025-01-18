@@ -1,0 +1,37 @@
+.homeArtsContainer {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+
+    .cardsContainer {
+        --grid-columns: repeat(3, 3fr);
+        display: grid;
+        grid-template-columns: var(--grid-columns);
+        grid-auto-flow: row;
+        justify-items: center;
+        align-items: center;
+        gap: 1rem 0;
+        padding-top: 0.5rem;
+    }
+
+    .bottomButtonContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 950px) {
+    .cardsContainer {
+        --grid-columns: repeat(2, 3fr) !important;
+    }
+}
+
+@media (max-width: 630px) {
+    .cardsContainer {
+        --grid-columns: repeat(1, 1fr) !important;
+        padding: 0 1rem;
+    }
+}

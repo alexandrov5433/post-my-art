@@ -27,3 +27,23 @@
     }
 }
 
+.follow {
+    background-color: var(--btn-red);
+    color: var(--btn-white);
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    border: none;
+    /* border: 0.15rem solid var(--btn-red); */
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 0.9rem;
+
+    &:active {
+        box-shadow: inset 0.1rem 0.1rem 0.5rem 0.01rem var(--text-third);
+    }
+
+    &:hover {
+        background-color: var(--btn-dark-red);
+    }
+}
+

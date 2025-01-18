@@ -1,7 +1,7 @@
 import styles from '@/ui/styles/nav.module.css';
 import { charm } from './fonts';
 import Search from './search';
-import Button from './buttons/button';
+import Button from './button';
 
 
 export default function NavBar() {
