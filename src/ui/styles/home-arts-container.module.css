@@ -4,13 +4,12 @@
     flex-direction: column;
 
     .cardsContainer {
-        --grid-columns: repeat(3, 3fr);
+        --grid-columns: repeat(4, 1fr);
         display: grid;
         grid-template-columns: var(--grid-columns);
         grid-auto-flow: row;
         justify-items: center;
-        align-items: center;
-        gap: 1rem 0;
+        gap: 1rem;
         padding-top: 0.5rem;
     }
 
@@ -23,15 +22,27 @@
     }
 }
 
+@media (max-width: 1000px) {
+    .homeArtsContainer {
+        .cardsContainer {
+            --grid-columns: repeat(3, 3fr);
+        }
+    }
+}
+
 @media (max-width: 950px) {
-    .cardsContainer {
-        --grid-columns: repeat(2, 3fr) !important;
+    .homeArtsContainer {
+        .cardsContainer {
+            --grid-columns: repeat(2, 3fr);
+        }
     }
 }
 
 @media (max-width: 630px) {
-    .cardsContainer {
-        --grid-columns: repeat(1, 1fr) !important;
-        padding: 0 1rem;
+    .homeArtsContainer {
+        .cardsContainer {
+            --grid-columns: repeat(1, 1fr);
+            padding: 0 0.1rem;
+        }
     }
 }
