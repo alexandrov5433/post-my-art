@@ -2,7 +2,7 @@
 .btn {
     width: fit-content;
     padding: 0.5rem 1.5rem;
-    border-radius: 40px;
+    border-radius: 100px;
     border: 0.15rem solid var(--btn-red);
     cursor: pointer;
     font-weight: 500;
@@ -33,7 +33,6 @@
     padding: 0.1rem 0.5rem;
     border-radius: 5px;
     border: none;
-    /* border: 0.15rem solid var(--btn-red); */
     cursor: pointer;
     font-weight: 400;
     font-size: 0.9rem;
@@ -47,3 +46,27 @@
     }
 }
 
+@media (max-width: 961px) {
+    .btn {
+        padding: 0.5rem 1.5rem;
+        border: 0.3rem solid var(--btn-red);
+        font-size: 2rem;
+    }
+
+    .follow {
+        padding: 0.1rem 0.5rem;
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 641px) {
+    .btn {
+        padding: 0.5rem 1.5rem;
+        border: 0.3rem solid var(--btn-red);
+        font-size: 2rem;
+    }
+
+    .follow {
+        padding: 0.1rem 0.5rem;
+        font-size: 2rem;
+    }
+}

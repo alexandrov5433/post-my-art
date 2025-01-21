@@ -78,25 +78,42 @@
 
 }
 
-@media (max-width: 800px) {
-    .searchAndMenu {
-        flex-direction: column;
-
-        .logoAndSearch {
+@media (max-width: 961px) {
+    .container {
+        .searchAndMenu {
             flex-direction: column;
-
+    
+            .logoAndSearch {
+                flex-direction: column;
+                h1 {
+                    font-size: 4rem;
+                }
+            }
+        }
+        .nav {
+            ul {
+                height: 5rem;
+                li {
+                    width: 25%;
+                    a {
+                        font-size: 2rem;
+                    }
+                }
+            }
         }
     }
 }
 
-@media (max-width: 300px) {
-    .nav {
-        ul {
-            height: 2.3rem !important;
-            li {
-                width: 25% !important;
-                a {
-                    font-size: 0.8rem;
+@media (max-width: 641px) {
+    .container {
+        .nav {
+            ul {
+                height: 5rem;
+                li {
+                    width: 25%;
+                    a {
+                        font-size: 2rem;
+                    }
                 }
             }
         }
