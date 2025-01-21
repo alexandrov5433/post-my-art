@@ -48,3 +48,7 @@ h6 {
     margin-bottom: 0.7em;
     font-weight: bold;
 }
+
+p {
+    font-weight: 500;
+}

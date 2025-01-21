@@ -3,9 +3,11 @@
 export interface ArtCardData {
     artName: string,
     artId: string,
+    artUrl: string,
+    artTags: string[],
     userName: string,
     userId: string,
-    artUrl: string,
+    profilePictureUrl: string,
     likesCount: number,
     commentsCount: number
 }

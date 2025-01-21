@@ -78,6 +78,32 @@
 
 }
 
+@media (max-width: 1025px) {
+    .container {
+        .searchAndMenu {
+            /* flex-direction: column; */
+    
+            .logoAndSearch {
+                /* flex-direction: column; */
+                h1 {
+                    font-size: 3.4rem;
+                }
+            }
+        }
+        .nav {
+            ul {
+                height: 5rem;
+                li {
+                    width: 25%;
+                    a {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 961px) {
     .container {
         .searchAndMenu {

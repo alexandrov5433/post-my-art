@@ -32,6 +32,30 @@
     }
 }
 
+@media (max-width: 1025px) {
+    .container {
+        width: 40vw;
+        height: clamp(3rem, 5vh, 7rem);
+        justify-content: flex-start;
+
+        .imageContainer {
+            width: 10%;
+
+            .imageElem {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .search {
+            font-size: 2rem;
+            color: var(--text-second);
+            width: clamp( 4rem, 70%, 20rem);
+            height: 70%;
+        }
+    }
+}
+
 @media (max-width: 961px) {
     .container {
         width: 75vw;

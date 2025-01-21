@@ -2,6 +2,7 @@
     --background: #f8f8f8;
     --elements-main: #ffffff;
     --elements-emphasis: #e0e0e0;
+    --elements-strong-emphasis: #b7b7b7;
     
     /* nav and header */
     --nav-main: #ffffff;
@@ -20,6 +21,9 @@
     /* footer */
     --footer-background: #15151e;
     --footer-darker-background: #111;
+
+    scrollbar-color: var(--btn-red) transparent;
+    scrollbar-width: thin;
 }
 
 body {

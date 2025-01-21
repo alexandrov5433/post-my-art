@@ -17,7 +17,7 @@ export default function ArtCardsHomeOverview({
         <div
             ref={masonryContainer}
             className={`${homeArtsContainerStyle.cardsContainer}`}>
-            {cards.map(c => ArtCard(c))}
+            {cards.map(c => ArtCard(c, true, true))}
         </div>
     );
 }

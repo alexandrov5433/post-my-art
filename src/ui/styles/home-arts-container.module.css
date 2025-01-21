@@ -1,5 +1,5 @@
 .homeArtsContainer {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
 
@@ -23,11 +23,22 @@
     }
 }
 
+@media (max-width: 1025px) {
+    .homeArtsContainer {
+        .cardsContainer {
+            --grid-columns: repeat(2, 3fr);
+            padding: 0 1rem;
+            gap: 2rem;
+        }
+    }
+}
+
 @media (max-width: 961px) {
     .homeArtsContainer {
         .cardsContainer {
             --grid-columns: repeat(2, 3fr);
             padding: 0 1em;
+            gap: 2rem;
         }
     }
 }
@@ -37,6 +48,7 @@
         .cardsContainer {
             --grid-columns: repeat(1, 1fr);
             padding: 0 0rem;
+            gap: 2rem;
         }
     }
 }
