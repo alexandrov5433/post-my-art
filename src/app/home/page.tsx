@@ -16,7 +16,7 @@ export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
   return (<>
     <NavBar></NavBar>
-    <main id="mainEl">
+    <main>
 
       <section className={`${homeBannerStyles.homeBannerWrapper}`}>
         <Image
