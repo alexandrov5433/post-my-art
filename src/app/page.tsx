@@ -8,6 +8,7 @@ import { fetchArtCards } from "@/lib/data";
 import { ArtCardData } from "@/lib/definitions";
 import { Suspense } from "react";
 import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
+import LoadingArtCards from "./loading";
 
 
 export default async function Home() {
@@ -32,7 +33,7 @@ export default async function Home() {
       </section>
 
       <section className={`${artsContainerStyles.homeArtsContainer}`}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={LoadingArtCards()}>
           <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
         </Suspense>
         <div className={`${artsContainerStyles.bottomButtonContainer}`}>
