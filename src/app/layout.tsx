@@ -3,7 +3,6 @@ import "@/ui/styles/global/color.css";
 import "@/ui/styles/global/reset.css"
 import "@/ui/styles/global/typography.css"
 import { roboto, charm } from "@/ui/fonts";
-import NavBar from "@/ui/nav";
 
 export const metadata: Metadata = {
   title: "Post My Art",
@@ -18,7 +17,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} ${charm.variable}`}>
       <body>
-        <NavBar></NavBar>
         {children}
       </body>
     </html>

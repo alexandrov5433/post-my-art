@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import homeBannerStyles from '@/ui/styles/home-banner.module.css';
-import home_banner from '../../public/home_banner.jpg';
+import home_banner from '../../../public/home_banner.jpg';
 import Button from "@/ui/button";
 import artsContainerStyles from '@/ui/styles/home-arts-container.module.css';
 import { fetchArtCards } from "@/lib/data";
@@ -9,12 +9,14 @@ import { ArtCardData } from "@/lib/definitions";
 import { Suspense } from "react";
 import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
 import LoadingArtCards from "./loading";
+import NavBar from "@/ui/nav";
 
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
-  return (
-    <main>
+  return (<>
+    <NavBar></NavBar>
+    <main id="mainEl">
 
       <section className={`${homeBannerStyles.homeBannerWrapper}`}>
         <Image
@@ -34,7 +36,7 @@ export default async function Home() {
 
       <section className={`${artsContainerStyles.homeArtsContainer}`}>
         <Suspense fallback={LoadingArtCards()}>
-          <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
+            <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
         </Suspense>
         <div className={`${artsContainerStyles.bottomButtonContainer}`}>
           <Button type="button" stylingType="generic" title="TO DO"></Button>
@@ -42,5 +44,6 @@ export default async function Home() {
       </section>
 
     </main>
+  </>
   );
 }
