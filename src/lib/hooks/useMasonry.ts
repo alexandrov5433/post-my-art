@@ -43,14 +43,15 @@ const useMasonry = () => {
         };
 
         handleMasonry();
+        const resizeCallback = () => {
+            handleMasonry();
+        };
         window.addEventListener("resize", handleMasonry);
-        const mutatuonObserver = new MutationObserver(handleMasonry);
-        mutatuonObserver.observe(document, {
-            childList: true,
-            subtree: true,
-        });
+        window.addEventListener("wheel", resizeCallback);
+
         return () => {
             window.removeEventListener("resize", handleMasonry);
+            window.removeEventListener("wheel", resizeCallback);
         };
 
     }, [items]);
@@ -66,6 +67,8 @@ const useMasonry = () => {
     const elementBottom = (el: HTMLElement) => {
         return el.getBoundingClientRect().bottom + window.scrollY;
     };
+
+
 
     return masonryContainer;
 };
