@@ -68,8 +68,6 @@ const useMasonry = () => {
         return el.getBoundingClientRect().bottom + window.scrollY;
     };
 
-
-
     return masonryContainer;
 };
 
