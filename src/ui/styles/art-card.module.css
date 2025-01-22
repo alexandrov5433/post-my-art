@@ -137,15 +137,39 @@
         .controls {
             height: 2.5rem;
             background-color: var(--elements-emphasis);
-            padding: 0 var(--cildrenSidePadding);
-            align-content: center;
+            padding: 0 var(--cildrenSidePadding);       
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            gap: 1.5rem;
+            
             a {
-                img {
-                    width: 10%;
-                    height: auto;
-                    /* filter: invert(100%); */
-                    fill: aqua !important;
-                    stroke: aqua;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 0.5rem;
+                span {
+                    color: var(--text-forth);
+                }
+                
+                .icon {
+                    width: auto;
+                    height: 50%;
+                }   
+                .generalIcons {
+                    fill: var(--text-second);
+                }
+                .star {
+                    fill: var(--text-forth);
+                }
+                .yellowStar {
+                    fill: var(--btn-yellow);
+                }
+                &:hover {
+                    .generalIcons,
+                    .star {
+                        fill: var(--btn-red) ;
+                    }
                 }
             }
         }
@@ -181,7 +205,14 @@
             }
     
             .controls {
-
+                height: 5rem;
+                gap: 2rem;             
+                a {
+                    gap: 1rem;
+                    span {
+                        font-size: 1.6rem;
+                    }
+                }
             }
         }
     }
@@ -217,7 +248,14 @@
             }
     
             .controls {
-
+                height: 5rem;
+                gap: 2rem;             
+                a {
+                    gap: 1rem;
+                    span {
+                        font-size: 1.6rem;
+                    }
+                }
             }
         }
     }
@@ -261,7 +299,14 @@
             }
     
             .controls {
-
+                height: 6rem;
+                gap: 3.5rem;             
+                a {
+                    gap: 1rem;
+                    span {
+                        font-size: 2rem;
+                    }
+                }
             }
         }
     }

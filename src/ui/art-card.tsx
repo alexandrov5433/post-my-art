@@ -2,20 +2,16 @@ import { ArtCardData } from "@/lib/definitions";
 import styles from '@/ui/styles/art-card.module.css';
 import Image from "next/image";
 import Button from "./button";
-import heartIcon from '../../public/icons/heart.svg';
-import commentBubblesIcon from '../../public/icons/comment-bubbles.svg';
-import starIcon from '../../public/icons/star.svg';
+import HeartIcon from "./svgs/heart";
+import CommentBubblesIcon from "./svgs/commentBubbles";
+import StarIcon from "./svgs/star";
 
 export default function ArtCard(
     data: ArtCardData,
     showTags: boolean = false,
     showAddComment: boolean = false
 ) {
-    // const HeartSVG = ({ color = '#222'}) => {
-    //     return (<svg width="800px" height="800px" viewBox="0 0 16 16" fill={`${color}`} xmlns="http://www.w3.org/2000/svg">
-    //         <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="#000000" />
-    //     </svg>);
-    // }
+
     return (
         <article
             key={data.artId}
@@ -78,11 +74,15 @@ export default function ArtCard(
                 ) : ('')}
                 <div className={`${styles.controls}`}>
                     <a href="#">
-                        <Image
-                            src={heartIcon}
-                            alt="Like button in the shape of a heart."
-                            // unoptimized
-                        ></Image>
+                        <HeartIcon className={`${styles.icon} ${styles.generalIcons}`}></HeartIcon>
+                        <span>{data.likesCount || 0}</span>
+                    </a>
+                    <a href="#">
+                        <CommentBubblesIcon className={`${styles.icon} ${styles.generalIcons}`}></CommentBubblesIcon>
+                        <span>{data.commentsCount || 0}</span>
+                    </a>
+                    <a href="#">
+                        <StarIcon className={`${styles.icon} ${data.isInFavorites ? styles.yellowStar : styles.star}`}></StarIcon>
                     </a>
                 </div>
             </section>

@@ -10,7 +10,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/1.jpg',
         likesCount: 120,
-        commentsCount: 15
+        commentsCount: 15,
+        isInFavorites: true
     },
     {
         artName: 'Ocean Dream',
@@ -21,7 +22,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/2.jpg',
         likesCount: 98,
-        commentsCount: 10
+        commentsCount: 10,
+        isInFavorites: false
     },
     {
         artName: 'Mountain Majesty',
@@ -32,7 +34,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/3.jpg',
         likesCount: 250,
-        commentsCount: 30
+        commentsCount: 30,
+        isInFavorites: true
     },
     {
         artName: 'Urban Vibes',
@@ -43,7 +46,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/4.jpg',
         likesCount: 85,
-        commentsCount: 12
+        commentsCount: 12,
+        isInFavorites: false
     },
     {
         artName: 'Mystical Forest',
@@ -54,7 +58,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/5.jpg',
         likesCount: 300,
-        commentsCount: 45
+        commentsCount: 45,
+        isInFavorites: false
     },
     {
         artName: 'Abstract Expression',
@@ -65,7 +70,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/6.jpg',
         likesCount: 150,
-        commentsCount: 20
+        commentsCount: 20,
+        isInFavorites: false
     },
     {
         artName: 'Fantasy Realm',
@@ -76,7 +82,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/7.jpg',
         likesCount: 400,
-        commentsCount: 60
+        commentsCount: 60,
+        isInFavorites: false
     },
     {
         artName: 'Winter Wonderland',
@@ -87,7 +94,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/8.jpg',
         likesCount: 220,
-        commentsCount: 35
+        commentsCount: 35,
+        isInFavorites: false
     },
     {
         artName: 'Cosmic Horizon',
@@ -98,7 +106,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/9.jpg',
         likesCount: 175,
-        commentsCount: 25
+        commentsCount: 25,
+        isInFavorites: false
     },
     {
         artName: 'Golden Hour',
@@ -109,7 +118,8 @@ const mockArtCardData: ArtCardData[] = [
         profilePictureUrl: '/default_user_profile_picture.jpg',
         artUrl: '/art/10.jpg',
         likesCount: 500,
-        commentsCount: 80
+        commentsCount: 80,
+        isInFavorites: false
     }
 ];
 

@@ -9,5 +9,6 @@ export interface ArtCardData {
     userId: string,
     profilePictureUrl: string,
     likesCount: number,
-    commentsCount: number
+    commentsCount: number,
+    isInFavorites: boolean
 }
