@@ -7,12 +7,18 @@ export default function Button({
 }: {
     title: string,
     type: 'button' | 'submit',
-    stylingType: 'generic' | 'outline' | 'follow'
+    stylingType: 'generic' | 'outline' | 'follow' | string[]
 }) {
     return (
         <button
-        className={`${styles.btn} ${styles[stylingType]}`}
-        type={type}
+            className={
+                stylingType instanceof Array ?
+                    `${styles.btn}${
+                        (stylingType.map(cl => ` ${styles[cl]}`)).join('')
+                    }`
+                    : `${styles.btn} ${styles[stylingType]}`
+            }
+            type={type}
         >{title}</button>
     );
 }

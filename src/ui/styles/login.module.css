@@ -1,0 +1,358 @@
+.mainContainer {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../public/water_colors.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .container {
+        background-color: var(--elements-main);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+        .titles {
+            margin-bottom: 2rem;
+
+            h1 {
+                margin: 0;
+            }
+
+            h4 {
+                margin-bottom: 0;
+                margin-top: 0.5rem;
+                font-weight: 300;
+                color: var(--text-third);
+            }
+        }
+
+        .inputs {
+            margin-bottom: 1rem;
+
+            div:first-child {
+                margin-bottom: 1rem;
+            }
+
+            div {
+                border: 1.5px solid var(--elements-emphasis);
+                position: relative;
+                border-radius: 8px;
+                height: 3.5rem;
+                width: 35vw;
+
+                span {
+                    position: absolute;
+                    top: -16%;
+                    left: 5%;
+                    background-color: var(--elements-main);
+                    border-radius: 4px;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    padding: 0 0.5rem;
+                }
+
+                input.field {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 1.5rem;
+                }
+            }
+        }
+
+        .remeberMe {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .formButtons {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .backButton {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            .arrowLeft {
+                fill: var(--text-second);
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            &:hover {
+                cursor: pointer;
+                .arrowLeft {
+                    fill: var(--btn-red);
+                }
+                p {
+                    color: var(--btn-red);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+    .mainContainer {
+        .container {
+            padding: 2rem;
+            border-radius: 0;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
+            .titles {
+                margin-bottom: 3rem;
+    
+                h1 {
+                    font-size: 5rem;
+                }
+    
+                h4 {
+                    font-size: 2.5rem;
+                }
+            }
+    
+            .inputs {
+                margin-bottom: 3rem;
+    
+                div:first-child {
+                    margin-bottom: 2.5rem;
+                }
+    
+                div {
+                    height: 6rem;
+                    width: 85vw;
+    
+                    span {
+                        top: -16%;
+                        left: 5%;
+                        font-size: 1.5rem;
+                    }
+    
+                    input.field {
+                        font-size: 2rem;
+                    }
+                }
+            }
+    
+            .remeberMe {
+                margin-bottom: 3rem;
+                font-size: 2rem;
+            }
+    
+            .formButtons {
+                margin-bottom: 3rem;
+                flex-direction: column;
+                gap: 2rem;
+            }
+    
+            .backButton {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                .arrowLeft {
+                    width: 4rem;
+                    height: 4rem;
+                }
+
+                p {
+                    font-size: 2.5rem;
+                }
+    
+                &:active {
+                    cursor: pointer;
+                    .arrowLeft {
+                        fill: var(--btn-red);
+                    }
+                    p {
+                        color: var(--btn-red);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 961px) {
+    .mainContainer {
+        width: 100vw;
+        height: fit-content;
+        min-height: 100dvh;
+
+        .container {
+            width: inherit;
+            height: 100dvh;
+            padding: 2rem;
+            border-radius: 0;
+            box-shadow: none;
+    
+            .titles {
+                margin-bottom: 3rem;
+    
+                h1 {
+                    font-size: 5rem;
+                }
+    
+                h4 {
+                    font-size: 2.5rem;
+                }
+            }
+    
+            .inputs {
+                margin-bottom: 3rem;
+    
+                div:first-child {
+                    margin-bottom: 2.5rem;
+                }
+    
+                div {
+                    height: 6rem;
+                    width: 85vw;
+    
+                    span {
+                        top: -16%;
+                        left: 5%;
+                        font-size: 1.5rem;
+                    }
+    
+                    input.field {
+                        font-size: 2rem;
+                    }
+                }
+            }
+    
+            .remeberMe {
+                margin-bottom: 3rem;
+                font-size: 2rem;
+            }
+    
+            .formButtons {
+                margin-bottom: 3rem;
+                flex-direction: column;
+                gap: 2rem;
+            }
+    
+            .backButton {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                .arrowLeft {
+                    width: 4rem;
+                    height: 4rem;
+                }
+
+                p {
+                    font-size: 2.5rem;
+                }
+    
+                &:active {
+                    cursor: pointer;
+                    .arrowLeft {
+                        fill: var(--btn-red);
+                    }
+                    p {
+                        color: var(--btn-red);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 641px) {
+    .mainContainer {
+        width: 100vw;
+        height: fit-content;
+        min-height: 100dvh;
+
+        .container {
+            width: inherit;
+            height: 100dvh;
+            padding: 2rem;
+            border-radius: 0;
+            box-shadow: none;
+    
+            .titles {
+                margin-bottom: 3rem;
+    
+                h1 {
+                    font-size: 5rem;
+                }
+    
+                h4 {
+                    font-size: 2.5rem;
+                }
+            }
+    
+            .inputs {
+                margin-bottom: 3rem;
+    
+                div:first-child {
+                    margin-bottom: 2.5rem;
+                }
+    
+                div {
+                    height: 6rem;
+                    width: 85vw;
+    
+                    span {
+                        top: -16%;
+                        left: 5%;
+                        font-size: 1.5rem;
+                    }
+    
+                    input.field {
+                        font-size: 2rem;
+                    }
+                }
+            }
+    
+            .remeberMe {
+                margin-bottom: 3rem;
+                font-size: 2rem;
+            }
+    
+            .formButtons {
+                margin-bottom: 3rem;
+                flex-direction: column;
+                gap: 2rem;
+            }
+    
+            .backButton {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                .arrowLeft {
+                    width: 4rem;
+                    height: 4rem;
+                }
+
+                p {
+                    font-size: 2.5rem;
+                }
+    
+                &:active {
+                    cursor: pointer;
+                    .arrowLeft {
+                        fill: var(--btn-red);
+                    }
+                    p {
+                        color: var(--btn-red);
+                    }
+                }
+            }
+        }
+    }
+}
