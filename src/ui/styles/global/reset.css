@@ -20,7 +20,7 @@ a {
     text-decoration: none;
 }
 
-input[type="text"],textarea, button {
+input[type="text"], input[type="password"],textarea, button {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
