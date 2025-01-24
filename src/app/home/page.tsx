@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import homeBannerStyles from '@/ui/styles/home-banner.module.css';
 import home_banner from '../../../public/home_banner.jpg';
@@ -10,7 +9,6 @@ import { Suspense } from "react";
 import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
 import LoadingArtCards from "./loading";
 import NavBar from "@/ui/nav";
-
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
