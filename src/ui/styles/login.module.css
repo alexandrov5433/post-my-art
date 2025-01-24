@@ -82,6 +82,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
             .arrowLeft {
                 fill: var(--text-second);
                 width: 1.5rem;
@@ -159,7 +164,11 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-
+                a {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
                 .arrowLeft {
                     width: 4rem;
                     height: 4rem;
@@ -246,7 +255,11 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-
+                a {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
                 .arrowLeft {
                     width: 4rem;
                     height: 4rem;
@@ -333,7 +346,11 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-
+                a {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
                 .arrowLeft {
                     width: 4rem;
                     height: 4rem;
