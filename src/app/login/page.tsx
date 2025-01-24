@@ -1,6 +1,8 @@
+
 import Button from '@/ui/button';
 import styles from '@/ui/styles/login.module.css';
 import ArrowLeft from '@/ui/svgs/arrow_left';
+import Link from 'next/link';
 
 export default function Login() {
     return (
@@ -34,11 +36,14 @@ export default function Login() {
                         type='button'
                         stylingType={['outline', 'loginPage', 'noAccount']}
                         title="Don't have an account yet?"
+                        redirectToURL={'/register'}
                     ></Button>
                 </section>
                 <section className={`${styles.backButton}`}>
-                    <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
-                    <p>Back to Home</p>
+                    <Link href={'/home'}>
+                        <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
+                        <p>Back to Home</p>
+                    </Link>
                 </section>
             </form>
         </main>

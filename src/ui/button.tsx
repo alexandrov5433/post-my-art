@@ -1,14 +1,20 @@
+'use client';
 import styles from '@/ui/styles/button.module.css';
+import { useRouter } from 'next/navigation';
+
 
 export default function Button({
     title,
     type,
-    stylingType
+    stylingType,
+    redirectToURL = null
 }: {
     title: string,
     type: 'button' | 'submit',
-    stylingType: 'generic' | 'outline' | 'follow' | string[]
+    stylingType: 'generic' | 'outline' | 'follow' | string[],
+    redirectToURL?: string | null,
 }) {
+    const router = useRouter();
     return (
         <button
             className={
@@ -19,6 +25,11 @@ export default function Button({
                     : `${styles.btn} ${styles[stylingType]}`
             }
             type={type}
+            onClick={() => {
+                if (redirectToURL) {
+                    router.push(redirectToURL);
+                }
+            }}
         >{title}</button>
     );
 }
