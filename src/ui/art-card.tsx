@@ -69,7 +69,7 @@ export default function ArtCard(
                 ) : ('')}
                 {showAddComment ? (
                     <div className={`${styles.addComment}`}>
-                        <textarea name="comment" placeholder="Leave a comment..."></textarea>
+                        <textarea className={`${styles.textInput}`} name="comment" placeholder="Leave a comment..."></textarea>
                         <Button
                             type='button'
                             stylingType="follow"
@@ -78,17 +78,17 @@ export default function ArtCard(
                     </div>
                 ) : ('')}
                 <div className={`${styles.controls}`}>
-                    <a href="#">
+                    <div className={`${styles.control}`}>
                         <HeartIcon className={`${styles.icon} ${styles.generalIcons}`}></HeartIcon>
-                        <span>{data.likesCount || 0}</span>
-                    </a>
-                    <a href="#">
+                        <span className={`${styles.count}`}>{data.likesCount || 0}</span>
+                    </div>
+                    <div className={`${styles.control}`}>
                         <CommentBubblesIcon className={`${styles.icon} ${styles.generalIcons}`}></CommentBubblesIcon>
-                        <span>{data.commentsCount || 0}</span>
-                    </a>
-                    <a href="#">
+                        <span className={`${styles.count}`}>{data.commentsCount || 0}</span>
+                    </div>
+                    <div className={`${styles.control}`}>
                         <StarIcon className={`${styles.icon} ${data.isInFavorites ? styles.yellowStar : styles.star}`}></StarIcon>
-                    </a>
+                    </div>
                 </div>
             </section>
         </article>

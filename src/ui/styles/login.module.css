@@ -33,18 +33,18 @@
         .inputs {
             margin-bottom: 1rem;
 
-            div:first-child {
+            .inputContainer:first-child {
                 margin-bottom: 1rem;
             }
 
-            div {
+            .inputContainer {
                 border: 1.5px solid var(--elements-emphasis);
                 position: relative;
                 border-radius: 8px;
                 height: 3.5rem;
                 width: 35vw;
 
-                span {
+                .title {
                     position: absolute;
                     top: -16%;
                     left: 5%;
@@ -56,7 +56,7 @@
                     padding: 0 0.5rem;
                 }
 
-                input.field {
+                .field {
                     width: 100%;
                     height: 100%;
                     padding: 0 1.5rem;
@@ -129,21 +129,21 @@
             .inputs {
                 margin-bottom: 3rem;
     
-                div:first-child {
+                .inputContainer:first-child {
                     margin-bottom: 2.5rem;
                 }
     
-                div {
+                .inputContainer {
                     height: 6rem;
                     width: 85vw;
     
-                    span {
+                    .title {
                         top: -16%;
                         left: 5%;
                         font-size: 1.5rem;
                     }
     
-                    input.field {
+                    .field {
                         font-size: 2rem;
                     }
                 }
@@ -220,21 +220,21 @@
             .inputs {
                 margin-bottom: 3rem;
     
-                div:first-child {
+                .inputContainer:first-child {
                     margin-bottom: 2.5rem;
                 }
     
-                div {
+                .inputContainer {
                     height: 6rem;
                     width: 85vw;
     
-                    span {
+                    .title {
                         top: -16%;
                         left: 5%;
                         font-size: 1.5rem;
                     }
     
-                    input.field {
+                    .field {
                         font-size: 2rem;
                     }
                 }
@@ -311,21 +311,21 @@
             .inputs {
                 margin-bottom: 3rem;
     
-                div:first-child {
+                .inputContainer:first-child {
                     margin-bottom: 2.5rem;
                 }
     
-                div {
+                .inputContainer {
                     height: 6rem;
                     width: 85vw;
     
-                    span {
+                    .title {
                         top: -16%;
                         left: 5%;
                         font-size: 1.5rem;
                     }
     
-                    input.field {
+                    .field {
                         font-size: 2rem;
                     }
                 }

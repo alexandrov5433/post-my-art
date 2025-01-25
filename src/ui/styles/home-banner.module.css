@@ -26,7 +26,7 @@
         justify-items: center;
         align-content: center;
 
-        h2 {
+        .slogan {
             color: var(--btn-white);
             font-family: var(--font-charm);
         }
@@ -36,7 +36,7 @@
 @media (max-width: 961px) {
     .homeBannerWrapper {
         .content {
-            h2 {
+            .slogan {
                 font-size: 3rem;
             }
         }
@@ -45,7 +45,7 @@
 @media (max-width: 641px) {
     .homeBannerWrapper {
         .content {
-            h2 {
+            .slogan {
                 font-size: 2rem;
             }
         }

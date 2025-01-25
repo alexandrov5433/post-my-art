@@ -34,10 +34,10 @@ export default function NavBar() {
 
             <nav className={styles.nav}>
                 <ul className={`${styles.unorderedList}`}>
-                    <li className={`${styles.listElement}`}><a href="#" className={`${styles.active}`}>Home</a></li>
-                    <li className={`${styles.listElement}`}><a href="#">Browse</a></li>
-                    <li className={`${styles.listElement}`}><a href="#">About</a></li>
-                    <li className={`${styles.listElement}`}><a href="#">Contact</a></li>
+                    <li className={`${styles.listElement}`}><a className={`${styles.anchor} ${styles.active}`} href="#">Home</a></li>
+                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">Browse</a></li>
+                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">About</a></li>
+                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">Contact</a></li>
                 </ul>
             </nav>
 

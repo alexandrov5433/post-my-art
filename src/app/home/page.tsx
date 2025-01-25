@@ -24,7 +24,7 @@ export default async function Home() {
         ></Image>
         <div className={`${homeBannerStyles.imageOverlay}`}>
           <div className={`${homeBannerStyles.content}`}>
-            <h2>Made with passion.</h2>
+            <h2 className={`${homeBannerStyles.slogan}`}>Made with passion.</h2>
             <Button
               type="button"
               title="Create your personal gallery!"
