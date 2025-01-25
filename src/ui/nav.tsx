@@ -9,7 +9,7 @@ export default function NavBar() {
 
             <div className={styles.searchAndMenu}>
                 <div className={styles.logoAndSearch}>
-                    <h1 className={`${charm.variable}`}>Post My Art</h1>
+                    <h1 className={`${charm.variable} ${styles.mainTitle}`}>Post My Art</h1>
                     <Search></Search>
                 </div>
 
@@ -33,11 +33,11 @@ export default function NavBar() {
 
 
             <nav className={styles.nav}>
-                <ul>
-                    <li><a href="#" className={`${styles.active}`}>Home</a></li>
-                    <li><a href="#">Browse</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                <ul className={`${styles.unorderedList}`}>
+                    <li className={`${styles.listElement}`}><a href="#" className={`${styles.active}`}>Home</a></li>
+                    <li className={`${styles.listElement}`}><a href="#">Browse</a></li>
+                    <li className={`${styles.listElement}`}><a href="#">About</a></li>
+                    <li className={`${styles.listElement}`}><a href="#">Contact</a></li>
                 </ul>
             </nav>
 

@@ -18,11 +18,11 @@
         .titles {
             margin-bottom: 2rem;
 
-            h1 {
+            .wellcome {
                 margin: 0;
             }
 
-            h4 {
+            .signIn {
                 margin-bottom: 0;
                 margin-top: 0.5rem;
                 font-weight: 300;
@@ -82,7 +82,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            a {
+            .anchor {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
@@ -98,7 +98,7 @@
                 .arrowLeft {
                     fill: var(--btn-red);
                 }
-                p {
+                .backToHome {
                     color: var(--btn-red);
                 }
             }
@@ -117,11 +117,11 @@
             .titles {
                 margin-bottom: 3rem;
     
-                h1 {
+                .wellcome {
                     font-size: 5rem;
                 }
     
-                h4 {
+                .signIn {
                     font-size: 2.5rem;
                 }
             }
@@ -164,7 +164,7 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                a {
+                .anchor {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
@@ -174,7 +174,7 @@
                     height: 4rem;
                 }
 
-                p {
+                .backToHome {
                     font-size: 2.5rem;
                 }
     
@@ -183,7 +183,7 @@
                     .arrowLeft {
                         fill: var(--btn-red);
                     }
-                    p {
+                    .backToHome {
                         color: var(--btn-red);
                     }
                 }
@@ -208,11 +208,11 @@
             .titles {
                 margin-bottom: 3rem;
     
-                h1 {
+                .wellcome {
                     font-size: 5rem;
                 }
     
-                h4 {
+                .signIn {
                     font-size: 2.5rem;
                 }
             }
@@ -255,7 +255,7 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                a {
+                .anchor {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
@@ -265,7 +265,7 @@
                     height: 4rem;
                 }
 
-                p {
+                .backToHome {
                     font-size: 2.5rem;
                 }
     
@@ -274,7 +274,7 @@
                     .arrowLeft {
                         fill: var(--btn-red);
                     }
-                    p {
+                    .backToHome {
                         color: var(--btn-red);
                     }
                 }
@@ -299,11 +299,11 @@
             .titles {
                 margin-bottom: 3rem;
     
-                h1 {
+                .wellcome {
                     font-size: 5rem;
                 }
     
-                h4 {
+                .signIn {
                     font-size: 2.5rem;
                 }
             }
@@ -346,7 +346,7 @@
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                a {
+                .anchor {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
@@ -356,7 +356,7 @@
                     height: 4rem;
                 }
 
-                p {
+                .backToHome {
                     font-size: 2.5rem;
                 }
     
@@ -365,7 +365,7 @@
                     .arrowLeft {
                         fill: var(--btn-red);
                     }
-                    p {
+                    .backToHome {
                         color: var(--btn-red);
                     }
                 }

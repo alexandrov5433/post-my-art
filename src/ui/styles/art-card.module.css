@@ -24,8 +24,8 @@
 
             &:hover {
                 .profilePicAndNameContainer {
-                    .name {
-                        p {
+                    .nameContainer {
+                        .name {
                             color: var(--btn-red);
                         }
                     }
@@ -39,7 +39,7 @@
             align-items: center;
             height: inherit;
 
-            .pic {
+            .picContainer {
                 /* outline: 1px solid rgb(153, 0, 255); */
                 height: 75%;
                 max-height: fit-content;
@@ -47,7 +47,7 @@
                 display: flex;
                 align-items: center;
 
-                img {
+                .pic {
                     border-radius: 50%;
                     width: auto;
                     height: inherit;
@@ -84,7 +84,7 @@
         flex-direction: column;
         --cildrenSidePadding: 1rem;
         
-        .artName {
+        .artNameContainer {
             /* border: 1px solid rgb(255, 0, 38); */
             /* height: fit-content; */
             /* width: 100%; */
@@ -95,7 +95,7 @@
             word-wrap: break-word;
             text-wrap: wrap;
             overflow: hidden;
-            p {
+            .artName {
                 font-weight: 400;
                 font-size: 1.1rem;
             }
@@ -108,7 +108,7 @@
             flex-direction: row;
             gap: 0.5rem;
             flex-wrap: wrap;
-            p {
+            .tag {
                 background-color: var(--elements-strong-emphasis);
                 color: var(--btn-white);
                 padding: 0 var(--cildrenSidePadding);
@@ -186,14 +186,14 @@
         }
 
         .bottom {          
-            .artName {
-                p {
+            .artNameContainer {
+                .artName {
                     font-size: 2rem;
                 }
             }
     
             .tags {
-                p {
+                .tag {
                     font-size: 1.5rem;
                 }
             }
@@ -229,14 +229,14 @@
         }
 
         .bottom {           
-            .artName {
-                p {
+            .artNameContainer {
+                .artName {
                     font-size: 2rem;
                 }
             }
     
             .tags {
-                p {
+                .tag {
                     font-size: 1.5rem;
                 }
             }
@@ -280,14 +280,14 @@
         }
 
         .bottom {          
-            .artName {
-                p {
+            .artNameContainer {
+                .artName {
                     font-size: 2rem;
                 }
             }
     
             .tags {
-                p {
+                .tag {
                     font-size: 1.5rem;
                 }
             }

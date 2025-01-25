@@ -9,8 +9,8 @@ export default function Login() {
         <main className={`${styles.mainContainer}`}>
             <form className={`${styles.container}`}>
                 <section className={`${styles.titles}`}>
-                    <h1>Welcome!</h1>
-                    <h4>Sign in to show your arts</h4>
+                    <h1 className={`${styles.wellcome}`}>Welcome!</h1>
+                    <h4 className={`${styles.signIn}`}>Sign in to post your arts</h4>
                 </section>
                 <section className={`${styles.inputs}`}>
                     <div>
@@ -40,9 +40,9 @@ export default function Login() {
                     ></Button>
                 </section>
                 <section className={`${styles.backButton}`}>
-                    <Link href={'/home'}>
+                    <Link className={`${styles.anchor}`} href={'/home'}>
                         <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
-                        <p>Back to Home</p>
+                        <p className={`${styles.backToHome}`}>Back to Home</p>
                     </Link>
                 </section>
             </form>

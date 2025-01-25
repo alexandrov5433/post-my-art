@@ -18,6 +18,7 @@ export default async function Home() {
 
       <section className={`${homeBannerStyles.homeBannerWrapper}`}>
         <Image
+          className={`${homeBannerStyles.banner}`}
           src={home_banner}
           alt="A beautiful painting. A classical work."
         ></Image>
@@ -34,7 +35,7 @@ export default async function Home() {
 
       <section className={`${artsContainerStyles.homeArtsContainer}`}>
         <Suspense fallback={LoadingArtCards()}>
-            <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
+          <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
         </Suspense>
         <div className={`${artsContainerStyles.bottomButtonContainer}`}>
           <Button type="button" stylingType="generic" title="TO DO"></Button>

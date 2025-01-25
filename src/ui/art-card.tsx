@@ -20,16 +20,19 @@ export default function ArtCard(
             <section className={`${styles.topUser}`}>
                 <a href="#" className={`${styles.anchorTopUser}`}>
                     <div className={`${styles.profilePicAndNameContainer}`}>
-                        <div className={`${styles.pic}`}>
+                        <div className={`${styles.picContainer}`}>
                             <Image
+                                className={`${styles.pic}`}
                                 src={data.profilePictureUrl}
                                 alt="The profile picture of this user."
                                 width={50}
                                 height={50}
                             ></Image>
                         </div>
-                        <div className={`${styles.name}`}>
-                            <p>@{data.userName}</p>
+                        <div className={`${styles.nameContainer}`}>
+                            <p
+                                className={`${styles.name}`}
+                            >@{data.userName}</p>
                         </div>
                     </div>
                 </a>
@@ -53,12 +56,14 @@ export default function ArtCard(
             </a>
 
             <section className={`${styles.bottom}`}>
-                <div className={`${styles.artName}`}>
-                    <p>{data.artName}</p>
+                <div className={`${styles.artNameContainer}`}>
+                    <p
+                        className={`${styles.artName}`}
+                    >{data.artName}</p>
                 </div>
                 {showTags ? (
                     <div className={`${styles.tags}`}>
-                        {data.artTags.map((t, i) => <p key={i}>{t}</p>)}
+                        {data.artTags.map((t, i) => <p className={`${styles.tag}`} key={i}>{t}</p>)}
 
                     </div>
                 ) : ('')}
