@@ -13,10 +13,13 @@ export default function Login() {
                     <h4 className={`${styles.signIn}`}>Sign in to post your arts</h4>
                 </section>
                 <section className={`${styles.inputs}`}>
-                    <div className={`${styles.inputContainer}`}>
+                    <div className={`${styles.inputContainer} ${styles.falseInput}`}>
                         <span className={`${styles.title}`}>Username</span>
                         <input className={`${styles.field}`} type="text" name="username" />
                     </div>
+                    <div className={`${styles.errorContainer}`}>
+                            <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                        </div>
                     <div className={`${styles.inputContainer}`}>
                         <span className={`${styles.title}`}>Password</span>
                         <input className={`${styles.field}`} type="password" name="password" />
