@@ -12,3 +12,10 @@ export interface ArtCardData {
     commentsCount: number,
     isInFavorites: boolean
 }
+
+export interface RegisterData {
+    username: string,
+    email: string,
+    password: string,
+    profilePictureURL: string,
+}

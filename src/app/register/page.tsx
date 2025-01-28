@@ -1,3 +1,4 @@
+'use client';
 import Button from '@/ui/button';
 import styles from '@/ui/styles/register.module.css';
 import ArrowLeft from '@/ui/svgs/arrow_left';
@@ -7,41 +8,84 @@ import Link from 'next/link';
 import paintingHand from '../../../public/hand-painting.png';
 import goldenFrame from '../../../public/golden-frame.png';
 import paintingsExhibition from '../../../public/paintings-exhibition.png';
+import { useActionState } from 'react';
+import { registerNewUser } from '@/lib/actions/user';
 
 export default function Register() {
+    const [state, formAction, pending] = useActionState(registerNewUser, {
+        success: false,
+        username: '',
+        email: '',
+        password: '',
+        repass: '',
+        other: '',
+    });
     return (
         <main className={`${styles.mainContainer}`}>
             <div className={`${styles.contentWrapper}`}>
-                <form className={`${styles.container}`}>
+                <form className={`${styles.container}`} action={formAction}>
                     <section className={`${styles.titles}`}>
                         <h1 className={`${styles.wellcome}`}>Register</h1>
                         <h4 className={`${styles.signIn}`}>Sign up for FREE and share your art</h4>
                     </section>
+
                     <section className={`${styles.inputs}`}>
-                        <div className={`${styles.inputContainer} ${styles.falseInput}`}>
+                        <div className={`${styles.inputContainer} ${state.username ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Username</span>
                             <input className={`${styles.field}`} type="text" name="username" />
                         </div>
-                        <div className={`${styles.errorContainer}`}>
-                            <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
-                        </div>
-                        <div className={`${styles.inputContainer}`}>
+                        {
+                            state.username ?
+                                <div className={`${styles.errorContainer}`}>
+                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                </div>
+                                : ''
+                        }
+
+                        <div className={`${styles.inputContainer} ${state.email ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Email</span>
-                            <input className={`${styles.field}`} type="text" name="username" />
+                            <input className={`${styles.field}`} type="text" name="email" />
                         </div>
-                        <div className={`${styles.inputContainer}`}>
+                        {
+                            state.email ?
+                                <div className={`${styles.errorContainer}`}>
+                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                </div>
+                                : ''
+
+                        }
+
+                        <div className={`${styles.inputContainer} ${state.password ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Password</span>
                             <input className={`${styles.field}`} type="password" name="password" />
                         </div>
-                        <div className={`${styles.inputContainer}`}>
+                        {
+                            state.password ?
+                                <div className={`${styles.errorContainer}`}>
+                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                </div>
+                                : ''
+
+                        }
+
+                        <div className={`${styles.inputContainer} ${state.repass ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Repeat Password</span>
-                            <input className={`${styles.field}`} type="password" name="password" />
+                            <input className={`${styles.field}`} type="password" name="repass" />
                         </div>
+                        {
+                            state.repass || state.other ?
+                                <div className={`${styles.errorContainer}`}>
+                                    <p className={`${styles.errorMsg}`}>{state.repass || state.other}</p>
+                                </div>
+                                : ''
+                        }
                     </section>
+
                     <section className={`${styles.remeberMe}`}>
-                        <input type="checkbox" name="rememberAccount" id="rememberMe"/>
-                        <span><label htmlFor="rememberMe">Remember me</label></span>
+                        <input type="checkbox" name="rememberAccount" id="rememberMe" />
+                        <span><label htmlFor="rememberMe">Remember me {state.success ? 'DONE' : 'Waiting...'}</label></span>
                     </section>
+
                     <section className={`${styles.formButtons}`}>
                         <Button
                             type='submit'
@@ -55,6 +99,7 @@ export default function Register() {
                             redirectToURL={'/login'}
                         ></Button>
                     </section>
+
                     <section className={`${styles.backButton}`}>
                         <Link className={`${styles.anchor}`} href={'/home'}>
                             <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
@@ -65,7 +110,7 @@ export default function Register() {
             </div>
             <article className={`${styles.infoContainer}`}>
                 <h4 className={`${styles.infoHeading}`}>PostMyArt offers you a dedicated
-                page that you can share with your audience.</h4>
+                    page that you can share with your audience.</h4>
                 <section className={`${styles.infoStatement}`}>
                     <Image
                         alt='A colorful hand painting with a brush.'
@@ -99,7 +144,7 @@ export default function Register() {
                         <p className={`${styles.statement}`}>There is no limits on how many art pieces you can upload on our site.</p>
                     </div>
                 </section>
-            </article>      
+            </article>
         </main>
     );
 }
