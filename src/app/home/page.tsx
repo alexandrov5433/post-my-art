@@ -10,6 +10,8 @@ import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
 import LoadingArtCards from "./loading";
 import NavBar from "@/ui/nav";
 
+// import { createDb, dropDb } from '@/lib/actions/db_prep_actions';
+
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
   return (<>
