@@ -52,7 +52,7 @@ export default function Register() {
                             type='button'
                             stylingType={['outline', 'loginPage', 'noAccount']}
                             title="I have an account"
-                            redirectToURL={'/register'}
+                            redirectToURL={'/login'}
                         ></Button>
                     </section>
                     <section className={`${styles.backButton}`}>
