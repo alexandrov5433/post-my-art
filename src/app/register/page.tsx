@@ -39,8 +39,8 @@ export default function Register() {
                         </div>
                     </section>
                     <section className={`${styles.remeberMe}`}>
-                        <input type="checkbox" name="rememberAccount" />
-                        <span>Remember me</span>
+                        <input type="checkbox" name="rememberAccount" id="rememberMe"/>
+                        <span><label htmlFor="rememberMe">Remember me</label></span>
                     </section>
                     <section className={`${styles.formButtons}`}>
                         <Button
