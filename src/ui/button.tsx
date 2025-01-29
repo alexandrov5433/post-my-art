@@ -1,19 +1,24 @@
 'use client';
 import styles from '@/ui/styles/button.module.css';
 import { useRouter } from 'next/navigation';
+import Loader from './loader';
 
 export default function Button({
     title,
     type,
     stylingType,
     redirectToURL = null,
-    onClick = null
+    onClick = null,
+    disabled = false,
+    isLoading = false
 }: {
     title: string,
     type: 'button' | 'submit',
     stylingType: 'generic' | 'outline' | 'follow' | string[],
     redirectToURL?: string | null,
-    onClick?: (() => any) | null
+    onClick?: (() => any) | null,
+    disabled?: boolean,
+    isLoading?: boolean
 }) {
     const router = useRouter();
     return (
@@ -34,6 +39,7 @@ export default function Button({
                     router.push(redirectToURL);
                 }
             }}
-        >{title}</button>
+            disabled={disabled || isLoading}
+        >{isLoading ? <Loader></Loader> : title}</button>
     );
 }

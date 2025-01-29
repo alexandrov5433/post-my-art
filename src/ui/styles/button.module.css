@@ -6,6 +6,12 @@
     border: 0.15rem solid var(--btn-red);
     cursor: pointer;
     font-weight: 500;
+
+    &:disabled {
+        &:active {
+            box-shadow: none;
+        }
+    }
 }
 
 .generic {
@@ -43,6 +49,11 @@
 
     &:hover {
         background-color: var(--btn-dark-red);
+    }
+    &:disabled {
+        &:hover {
+            background-color: var(--btn-red);
+        }
     }
 }
 
