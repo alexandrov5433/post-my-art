@@ -5,13 +5,13 @@ export async function createDb() {
     try {
         await sql`
             CREATE TABLE "User" (
-                "userID" int PRIMARY KEY,
+                "userID" SERIAL PRIMARY KEY,
                 "username" varchar(200) NOT NULL,
                 "email" varchar(200) NOT NULL,
                 "password" varchar(1000) NOT NULL,
-                "favoriteArts" int[] NOT NULL,
-                "followedArtists" int[] NOT NULL,
-                "postedArts" int[] NOT NULL,
+                "favoriteArts" int[] DEFAULT array[]::int[],
+                "followedArtists" int[] DEFAULT array[]::int[],
+                "postedArts" int[] DEFAULT array[]::int[],
                 "profilePictureURL" text NOT NULL,
                 "country" varchar(200) NULL,
                 "instagramURL" text NULL,
@@ -22,23 +22,23 @@ export async function createDb() {
         `;
         await sql`
             CREATE TABLE "Art" (
-                "artID" int PRIMARY KEY,
+                "artID" SERIAL PRIMARY KEY,
                 "artPictureURL" text NOT NULL,
                 "artOwnerID" int NOT NULL REFERENCES "User" ("userID"),
                 "name" varchar(200) NOT NULL,
                 "description" text NULL,
-                "tags" text[] NOT NULL,
-                "likes" int[] NOT NULL,
-                "comments" int[] NOT NULL
+                "tags" text[] DEFAULT array[]::text[],
+                "likes" int[] DEFAULT array[]::int[],
+                "comments" int[] DEFAULT array[]::int[]
             );
         `;
         await sql`
             CREATE TABLE "Comment" (
-                "commentID" int PRIMARY KEY,
+                "commentID" SERIAL PRIMARY KEY,
                 "commentOwnerID" int NOT NULL REFERENCES "User" ("userID"),
                 "commentText" text NOT NULL,
                 "timeOfPostingMS" bigint NOT NULL,
-                "likes" int[] NOT NULL
+                "likes" int[] DEFAULT array[]::int[]
             );
         `;
         console.log('DB CREATED successfully!');
