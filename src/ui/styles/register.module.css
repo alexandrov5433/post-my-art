@@ -4,17 +4,12 @@
     background-image: url(../../../public/water_colors.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    
-    .contentWrapper {
-        width: 100%;
-        height: 100%;
-        min-height: fit-content;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-left: 50vw;
-        padding-right: 10vw;
-
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 10%;
+    padding-top: 1rem;
+    gap: 5%;
 
     .container {
         background-color: var(--elements-main);
@@ -22,6 +17,8 @@
         border-radius: 1rem;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         height: min-content;
+
+        flex: 2 1 50%;
 
         .titles {
             margin-bottom: 2rem;
@@ -128,11 +125,9 @@
         padding: 2rem;
         border-radius: 1rem;
         width: 40vw;
-        position: absolute;
-        top: 10%;
-        left: 5%;
+        max-height: fit-content;
 
-
+        flex: 1 2 auto;
         .infoHeading {
             font-weight: 500;
             margin-bottom: 2rem;

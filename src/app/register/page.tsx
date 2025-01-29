@@ -13,108 +13,9 @@ import { registerNewUser } from '@/lib/actions/user';
 
 export default function Register() {
     const [state, formAction, pending] = useActionState(registerNewUser, null);
-    const [formValues, setValues] = useState({username: '', email: ''});
+    const [formValues, setValues] = useState({ username: '', email: '' });
     return (
         <main className={`${styles.mainContainer}`}>
-            <div className={`${styles.contentWrapper}`}>
-                <form className={`${styles.container}`} action={formAction}>
-                    <section className={`${styles.titles}`}>
-                        <h1 className={`${styles.wellcome}`}>Register</h1>
-                        <h4 className={`${styles.signIn}`}>Sign up for FREE and share your art</h4>
-                    </section>
-
-                    <section className={`${styles.inputs}`}>
-                        <div className={`${styles.inputContainer} ${state?.username.msg ? styles.falseInput : ''}`}>
-                            <span className={`${styles.title}`}>Username</span>
-                            <input className={`${styles.field}`} type="text" name="username" 
-                            value={formValues?.username}
-                            onChange={(e) => setValues({username: e.currentTarget.value, email: formValues.email})}
-                            />
-                        </div>
-                        {
-                            state?.username.msg ?
-                                <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state.username.msg}</p>
-                                </div>
-                                : ''
-                        }
-
-                        <div className={`${styles.inputContainer} ${state?.email.msg ? styles.falseInput : ''}`}>
-                            <span className={`${styles.title}`}>Email</span>
-                            <input className={`${styles.field}`} type="text" name="email" 
-                            value={formValues?.email}
-                            onChange={(e) => setValues({username: formValues.username, email: e.currentTarget.value})}
-                            />
-                        </div>
-                        {
-                            state?.email.msg ?
-                                <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state.email.msg}</p>
-                                </div>
-                                : ''
-                        }
-
-                        <div className={`${styles.inputContainer} ${state?.password.msg ? styles.falseInput : ''}`}>
-                            <span className={`${styles.title}`}>Password</span>
-                            <input className={`${styles.field}`} type="password" name="password" />
-                        </div>
-                        {
-                            state?.password.msg ?
-                                <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state.password.msg}</p>
-                                </div>
-                                : ''
-                        }
-
-                        <div className={`${styles.inputContainer} ${state?.repass.msg ? styles.falseInput : ''}`}>
-                            <span className={`${styles.title}`}>Repeat Password</span>
-                            <input className={`${styles.field}`} type="password" name="repass" />
-                        </div>
-                        {
-                            state?.repass.msg ?
-                                <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state?.repass.msg}</p>
-                                </div>
-                                : ''
-                        }
-                        {
-                            state?.other.msg ?
-                                <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state?.other.msg}</p>
-                                </div>
-                                : ''
-                        }
-                    </section>
-
-                    <section className={`${styles.remeberMe}`}>
-                        <input type="checkbox" name="rememberAccount" id="rememberMe" />
-                        <span><label htmlFor="rememberMe">Remember me</label></span>
-                    </section>
-
-                    <section className={`${styles.formButtons}`}>
-                        <Button
-                            type='submit'
-                            stylingType={['generic', 'loginPage', 'login']}
-                            title='Register'
-                            isLoading={pending}
-                        ></Button>
-                        <Button
-                            type='button'
-                            stylingType={['outline', 'loginPage', 'noAccount']}
-                            title="I have an account"
-                            redirectToURL={'/login'}
-                            disabled={pending}
-                        ></Button>
-                    </section>
-
-                    <section className={`${styles.backButton}`}>
-                        <Link className={`${styles.anchor}`} href={'/home'}>
-                            <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
-                            <p className={`${styles.backToHome}`}>Back to Home</p>
-                        </Link>
-                    </section>
-                </form>
-            </div>
             <article className={`${styles.infoContainer}`}>
                 <h4 className={`${styles.infoHeading}`}>PostMyArt offers you a dedicated
                     page that you can share with your audience.</h4>
@@ -152,6 +53,103 @@ export default function Register() {
                     </div>
                 </section>
             </article>
+            <form className={`${styles.container}`} action={formAction}>
+                <section className={`${styles.titles}`}>
+                    <h1 className={`${styles.wellcome}`}>Register</h1>
+                    <h4 className={`${styles.signIn}`}>Sign up for FREE and share your art</h4>
+                </section>
+
+                <section className={`${styles.inputs}`}>
+                    <div className={`${styles.inputContainer} ${state?.username.msg ? styles.falseInput : ''}`}>
+                        <span className={`${styles.title}`}>Username</span>
+                        <input className={`${styles.field}`} type="text" name="username"
+                            value={formValues?.username}
+                            onChange={(e) => setValues({ username: e.currentTarget.value, email: formValues.email })}
+                        />
+                    </div>
+                    {
+                        state?.username.msg ?
+                            <div className={`${styles.errorContainer}`}>
+                                <p className={`${styles.errorMsg}`}>{state.username.msg}</p>
+                            </div>
+                            : ''
+                    }
+
+                    <div className={`${styles.inputContainer} ${state?.email.msg ? styles.falseInput : ''}`}>
+                        <span className={`${styles.title}`}>Email</span>
+                        <input className={`${styles.field}`} type="text" name="email"
+                            value={formValues?.email}
+                            onChange={(e) => setValues({ username: formValues.username, email: e.currentTarget.value })}
+                        />
+                    </div>
+                    {
+                        state?.email.msg ?
+                            <div className={`${styles.errorContainer}`}>
+                                <p className={`${styles.errorMsg}`}>{state.email.msg}</p>
+                            </div>
+                            : ''
+                    }
+
+                    <div className={`${styles.inputContainer} ${state?.password.msg ? styles.falseInput : ''}`}>
+                        <span className={`${styles.title}`}>Password</span>
+                        <input className={`${styles.field}`} type="password" name="password" />
+                    </div>
+                    {
+                        state?.password.msg ?
+                            <div className={`${styles.errorContainer}`}>
+                                <p className={`${styles.errorMsg}`}>{state.password.msg}</p>
+                            </div>
+                            : ''
+                    }
+
+                    <div className={`${styles.inputContainer} ${state?.repass.msg ? styles.falseInput : ''}`}>
+                        <span className={`${styles.title}`}>Repeat Password</span>
+                        <input className={`${styles.field}`} type="password" name="repass" />
+                    </div>
+                    {
+                        state?.repass.msg ?
+                            <div className={`${styles.errorContainer}`}>
+                                <p className={`${styles.errorMsg}`}>{state?.repass.msg}</p>
+                            </div>
+                            : ''
+                    }
+                    {
+                        state?.other.msg ?
+                            <div className={`${styles.errorContainer}`}>
+                                <p className={`${styles.errorMsg}`}>{state?.other.msg}</p>
+                            </div>
+                            : ''
+                    }
+                </section>
+
+                <section className={`${styles.remeberMe}`}>
+                    <input type="checkbox" name="rememberAccount" id="rememberMe" />
+                    <span><label htmlFor="rememberMe">Remember me</label></span>
+                </section>
+
+                <section className={`${styles.formButtons}`}>
+                    <Button
+                        type='submit'
+                        stylingType={['generic', 'loginPage', 'login']}
+                        title='Register'
+                        isLoading={pending}
+                    ></Button>
+                    <Button
+                        type='button'
+                        stylingType={['outline', 'loginPage', 'noAccount']}
+                        title="I have an account"
+                        redirectToURL={'/login'}
+                        disabled={pending}
+                    ></Button>
+                </section>
+
+                <section className={`${styles.backButton}`}>
+                    <Link className={`${styles.anchor}`} href={'/home'}>
+                        <ArrowLeft className={`${styles.arrowLeft}`}></ArrowLeft>
+                        <p className={`${styles.backToHome}`}>Back to Home</p>
+                    </Link>
+                </section>
+            </form>
         </main>
     );
 }
