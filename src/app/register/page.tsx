@@ -8,18 +8,12 @@ import Link from 'next/link';
 import paintingHand from '../../../public/hand-painting.png';
 import goldenFrame from '../../../public/golden-frame.png';
 import paintingsExhibition from '../../../public/paintings-exhibition.png';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { registerNewUser } from '@/lib/actions/user';
 
 export default function Register() {
-    const [state, formAction, pending] = useActionState(registerNewUser, {
-        success: false,
-        username: '',
-        email: '',
-        password: '',
-        repass: '',
-        other: '',
-    });
+    const [state, formAction, pending] = useActionState(registerNewUser, null);
+    const [formValues, setValues] = useState({username: '', email: ''});
     return (
         <main className={`${styles.mainContainer}`}>
             <div className={`${styles.contentWrapper}`}>
@@ -30,52 +24,63 @@ export default function Register() {
                     </section>
 
                     <section className={`${styles.inputs}`}>
-                        <div className={`${styles.inputContainer} ${state.username ? styles.falseInput : ''}`}>
+                        <div className={`${styles.inputContainer} ${state?.username.msg ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Username</span>
-                            <input className={`${styles.field}`} type="text" name="username" />
+                            <input className={`${styles.field}`} type="text" name="username" 
+                            value={formValues?.username}
+                            onChange={(e) => setValues({username: e.currentTarget.value, email: formValues.email})}
+                            />
                         </div>
                         {
-                            state.username ?
+                            state?.username.msg ?
                                 <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                    <p className={`${styles.errorMsg}`}>{state.username.msg}</p>
                                 </div>
                                 : ''
                         }
 
-                        <div className={`${styles.inputContainer} ${state.email ? styles.falseInput : ''}`}>
+                        <div className={`${styles.inputContainer} ${state?.email.msg ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Email</span>
-                            <input className={`${styles.field}`} type="text" name="email" />
+                            <input className={`${styles.field}`} type="text" name="email" 
+                            value={formValues?.email}
+                            onChange={(e) => setValues({username: formValues.username, email: e.currentTarget.value})}
+                            />
                         </div>
                         {
-                            state.email ?
+                            state?.email.msg ?
                                 <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                    <p className={`${styles.errorMsg}`}>{state.email.msg}</p>
                                 </div>
                                 : ''
-
                         }
 
-                        <div className={`${styles.inputContainer} ${state.password ? styles.falseInput : ''}`}>
+                        <div className={`${styles.inputContainer} ${state?.password.msg ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Password</span>
                             <input className={`${styles.field}`} type="password" name="password" />
                         </div>
                         {
-                            state.password ?
+                            state?.password.msg ?
                                 <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>Error message here: sdfafsdjsdfajasdjfhksfdjk. sdjfaskdjfaksdfkasd kjskfdjl sdfkljfsd ld lk lk aosidjf </p>
+                                    <p className={`${styles.errorMsg}`}>{state.password.msg}</p>
                                 </div>
                                 : ''
-
                         }
 
-                        <div className={`${styles.inputContainer} ${state.repass ? styles.falseInput : ''}`}>
+                        <div className={`${styles.inputContainer} ${state?.repass.msg ? styles.falseInput : ''}`}>
                             <span className={`${styles.title}`}>Repeat Password</span>
                             <input className={`${styles.field}`} type="password" name="repass" />
                         </div>
                         {
-                            state.repass || state.other ?
+                            state?.repass.msg ?
                                 <div className={`${styles.errorContainer}`}>
-                                    <p className={`${styles.errorMsg}`}>{state.repass || state.other}</p>
+                                    <p className={`${styles.errorMsg}`}>{state?.repass.msg}</p>
+                                </div>
+                                : ''
+                        }
+                        {
+                            state?.other.msg ?
+                                <div className={`${styles.errorContainer}`}>
+                                    <p className={`${styles.errorMsg}`}>{state?.other.msg}</p>
                                 </div>
                                 : ''
                         }
@@ -83,7 +88,7 @@ export default function Register() {
 
                     <section className={`${styles.remeberMe}`}>
                         <input type="checkbox" name="rememberAccount" id="rememberMe" />
-                        <span><label htmlFor="rememberMe">Remember me {state.success ? 'DONE' : 'Waiting...'}</label></span>
+                        <span><label htmlFor="rememberMe">Remember me</label></span>
                     </section>
 
                     <section className={`${styles.formButtons}`}>
@@ -91,12 +96,14 @@ export default function Register() {
                             type='submit'
                             stylingType={['generic', 'loginPage', 'login']}
                             title='Register'
+                            isLoading={pending}
                         ></Button>
                         <Button
                             type='button'
                             stylingType={['outline', 'loginPage', 'noAccount']}
                             title="I have an account"
                             redirectToURL={'/login'}
+                            disabled={pending}
                         ></Button>
                     </section>
 

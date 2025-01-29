@@ -22,18 +22,46 @@ const UserRegistrationFormSchema = z.object({
     message: 'Passwords must match.'
 });
 
+type PreviousStateProp = {
+    msg: string,
+    previousValue: string
+}
+
 export async function registerNewUser(
     previousState: {
         success: boolean,
-        username: string,
-        email: string,
-        password: string,
-        repass: string,
-        other: string
-    },
+        username: PreviousStateProp,
+        email: PreviousStateProp,
+        password: PreviousStateProp,
+        repass: PreviousStateProp,
+        other: PreviousStateProp
+    } | null,
     formData: FormData
 ) {
-    const state = previousState;
+    
+    previousState = {
+        success: false,
+        username: {
+            msg: '',
+            previousValue: ''
+        },
+        email: {
+            msg: '',
+            previousValue: ''
+        },
+        password: {
+            msg: '',
+            previousValue: ''
+        },
+        repass: {
+            msg: '',
+            previousValue: ''
+        },
+        other: {
+            msg: '',
+            previousValue: ''
+        }
+    };
     // validate registration data
     const result = UserRegistrationFormSchema.safeParse({
         username: formData.get('username'),
@@ -43,43 +71,41 @@ export async function registerNewUser(
     });
     if (!result.success) {
         // return false state with errors
-        state.success = false;
+        previousState.success = false;
         result.error.issues.forEach(err => {
-            // console.log(err.path[0], err.message);
             if (!err.path[0]) {
                 // case repass
-                state.repass = err.message;
+                previousState.repass.msg = err.message;
             } else {
                 const pathName: string = err.path[0].toString();
-                (state as any)[pathName] = err.message;
+                ((previousState as any)[pathName] as PreviousStateProp).msg = err.message;
             }
-        });
-        console.log('returning false state: ', state);
-        
-        return state;
+        }); 
+        return previousState;
     }
     try {
         // add default user pic url
         // hash password
         const data = {
-            username: formData.get('password') as string,
+            username: formData.get('username') as string,
             email: formData.get('email')  as string,
             password: await bcrypt.hash(formData.get('password') as string, 12),
             profilePictureUrl: '/default_user_profile_picture.jpg'
         }
         // add user in db
-        // await sql`
-        //     INSERT INTO User (username, email, password, profilePictureUrl)
-        //     VALUES (${data.username}, ${data.email}, ${data.password}, ${data.profilePictureUrl})
-        // `;
+        await sql`
+            INSERT INTO "User" (username, email, password, "profilePictureURL")
+            VALUES (${data.username}, ${data.email}, ${data.password}, ${data.profilePictureUrl})
+        `;
     } catch (err) {
-        state.success = false;
-        state.other = (err as Error).message;
+        previousState.success = false;
+        previousState.other.msg = (err as Error).message;
         console.error((err as Error).message);
-        return state;
+        return previousState;
     }
-    // return successful state 
-    state.success = true;
-    console.log('returning successful state: ', state);
-    return state;
+    // return successful previousState 
+    previousState.success = true;
+    previousState.username.previousValue = formData.get('username') as string;
+    previousState.email.previousValue = formData.get('email') as string;
+    return previousState;
 }
