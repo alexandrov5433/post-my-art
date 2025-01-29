@@ -18,7 +18,7 @@ const UserRegistrationFormSchema = z.object({
         message: 'Password must be at least 5 or at most 30 characters long.'
     }),
     repass: z.string()
-}).refine(data => data.password === data.repass, {
+}).refine(data => data.password === data.repass && Boolean(data.repass), {
     message: 'Passwords must match.'
 });
 
