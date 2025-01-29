@@ -9,10 +9,10 @@ import paintingHand from '../../../public/hand-painting.png';
 import goldenFrame from '../../../public/golden-frame.png';
 import paintingsExhibition from '../../../public/paintings-exhibition.png';
 import { useActionState, useState } from 'react';
-import { registerNewUser } from '@/lib/actions/user';
+import { register } from '@/lib/actions/user';
 
 export default function Register() {
-    const [state, formAction, pending] = useActionState(registerNewUser, null);
+    const [state, formAction, pending] = useActionState(register, null);
     const [formValues, setValues] = useState({ username: '', email: '' });
     return (
         <main className={`${styles.mainContainer}`}>
