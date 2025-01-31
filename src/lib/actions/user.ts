@@ -118,7 +118,6 @@ export async function register(
             throw new Error(`Could not find a user with username: "${data.username}".`);
         }
         // generate JWT and set cookie
-        console.log('rows[0]?.userID', rows[0]?.userID);
         await genJWTAndSetSessionCookie(rows[0]?.userID, rememberMe);
     } catch (err) {
         previousState.success = false;
@@ -173,8 +172,6 @@ export async function login(
             previousState.username.previousValue = usernameToCheck;
             return previousState;
         }
-        console.log('SUCCESS');
-        
         await genJWTAndSetSessionCookie(id, rememberMe);
     } catch (err) {
         console.error(err);
