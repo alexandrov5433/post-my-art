@@ -2,8 +2,8 @@
 import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';
 import z from 'zod';
-import { cookies } from "next/headers";
-import { createJWT } from "../util/jwt";
+import { genJWTAndSetSessionCookie, deleteSessionCookie } from "./session";
+
 
 const UserRegistrationFormSchema = z.object({
     username: z.string().refine(val => val.length > 1 && val.length < 31 && !val.includes(','), {
@@ -40,7 +40,7 @@ export async function register(
     } | null,
     formData: FormData
 ) {
-
+    const rememberMe = Boolean(formData.get('rememberAccount'));
     previousState = {
         success: false,
         username: {
@@ -95,30 +95,31 @@ export async function register(
             profilePictureUrl: '/default_user_profile_picture.jpg'
         }
         // check if username or email is taken
-        const userData = await sql`SELECT ("userID", username, password) FROM "User" WHERE (username = ${data.username});`;
-        if (userData.rows[0]?.row) {
-            throw new Error(`The username: "${data.username}" is taken.`);
+        const [usernameTaken, emailTaken] = await Promise.all([
+            sql`SELECT (username) FROM "User" WHERE (username = ${data.username});`,
+            sql`SELECT (email) FROM "User" WHERE (email = ${data.email});`
+        ]);
+        if (usernameTaken?.rows[0]?.username || emailTaken?.rows[0]?.email) {
+            throw new Error(
+                ''.concat(
+                    usernameTaken?.rows[0]?.username ? `The username: "${data.username}" is taken. ` : '',
+                    emailTaken?.rows[0]?.email ? `The email: "${data.email}" is already in use.` : ''
+                )
+            );
         }
         // add user in db
         await sql`
             INSERT INTO "User" (username, email, password, "profilePictureURL")
             VALUES (${data.username}, ${data.email}, ${data.password}, ${data.profilePictureUrl})
         `;
-        const { rows } = await sql`SELECT ("userID", username, password) FROM "User" WHERE (username = ${data.username});`;
-        if (!rows[0]?.row) {
+        // get new user´s userID
+        const { rows } = await sql`SELECT ("userID") FROM "User" WHERE (username = ${data.username});`;
+        if (!rows[0]?.userID) {
             throw new Error(`Could not find a user with username: "${data.username}".`);
         }
-        const [id, username, hash] = rows[0].row.slice(1, rows[0].row.length - 1).split(',');
-        const token = await createJWT({userID: id});
-        if (token instanceof Error) {
-            throw token;
-        }
-        const cookiePool = await cookies();
-        cookiePool.set('session', token, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 60 * 60 * 24 * 365 * 100, 
-        });
+        // generate JWT and set cookie
+        console.log('rows[0]?.userID', rows[0]?.userID);
+        await genJWTAndSetSessionCookie(rows[0]?.userID, rememberMe);
     } catch (err) {
         previousState.success = false;
         previousState.other.msg = (err as Error).message;
@@ -172,16 +173,9 @@ export async function login(
             previousState.username.previousValue = usernameToCheck;
             return previousState;
         }
-        const token = await createJWT({userID: id});
-        if (token instanceof Error) {
-            throw token;
-        }
-        const cookiePool = await cookies();
-        cookiePool.set('session', token, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 60 * 60 * 24 * 365 * 100, 
-        });
+        console.log('SUCCESS');
+        
+        await genJWTAndSetSessionCookie(id, rememberMe);
     } catch (err) {
         console.error(err);
         previousState.success = false;
