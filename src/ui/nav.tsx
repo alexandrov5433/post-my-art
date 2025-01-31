@@ -1,3 +1,4 @@
+'use client';
 import styles from '@/ui/styles/nav.module.css';
 import { charm } from './fonts';
 import Search from './search';
@@ -5,12 +6,17 @@ import Button from './button';
 import { UserData } from '@/lib/definitions';
 import Image from 'next/image';
 import MenuIcon from './svgs/menu';
+import { useState } from 'react';
 
 export default function NavBar({
     userData
 }: {
     userData: UserData | null
 }) {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const toggleMenuHiddenClass = () => { 
+        setMenuOpen(!isMenuOpen);
+    }
     return (
         <div className={styles.container}>
 
@@ -33,8 +39,20 @@ export default function NavBar({
                                 ></Image>
                             </div>
                             <div className={styles.usernameContainer}>
-                                <p className={styles.username}>{userData.username}</p>
+                                <Button
+                                    type='button'
+                                    stylingType='userMenu'
+                                    title={userData.username}
+                                    onClick={toggleMenuHiddenClass}
+                                ></Button>
                                 <MenuIcon className={`${styles.menuIcon}`}></MenuIcon>
+                            </div>
+                            <div className={`${styles.menu} ${isMenuOpen ? '' : styles.hide}`}>
+                                <ul>
+                                    <li className={`${styles.item} ${styles.profile}`}><a href="#">My Profile</a></li>
+                                    <li className={`${styles.item} ${styles.add}`}><a href="#">Add Art</a></li>
+                                    <li className={`${styles.item} ${styles.logout}`}><a href="#">Logout</a></li>
+                                </ul>
                             </div>
                         </div>
                         : <div className={styles.controls}>

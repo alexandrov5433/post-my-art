@@ -72,6 +72,17 @@
     }
 }
 
+.userMenu {
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    color: var(--btn-red);
+    &:hover {
+        color: var(--btn-dark-red);
+    }
+}
+
 @media (max-width: 1025px) {
     .btn {
         padding: 0.5rem 1.5rem;

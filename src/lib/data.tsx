@@ -1,3 +1,4 @@
+'use server';
 import { ArtCardData, UserData } from "./definitions";
 import { mockArtCardData } from "./mock-data";
 import { sql } from "@vercel/postgres";
@@ -17,7 +18,6 @@ export async function fetchUserData(userID: string): Promise<UserData | null> {
         if (!Object.hasOwn(payload, 'username')) {
             throw new Error(`The data received from DB for userID: "${userID}" is incomplete.`);
         }
-        console.log(payload);
         return payload;
     } catch (err) {
         console.error((err as Error).message);
