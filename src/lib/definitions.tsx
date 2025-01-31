@@ -19,3 +19,19 @@ export interface RegisterData {
     password: string,
     profilePictureURL: string,
 }
+
+export interface UserData     {
+    userID: number,
+    username: string,
+    email: string,
+    password: string,
+    favoriteArts: number[],
+    followedArtists: number[],
+    postedArts: number[],
+    profilePictureURL: string,
+    country: string | null,
+    instagramURL: string | null,
+    facebookURL: string | null,
+    exURL: string | null,
+    publicEmail: string | null
+}

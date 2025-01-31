@@ -29,6 +29,48 @@
                 justify-content: space-between;
                 gap: 1rem;
             }
+
+            .loggedIn {
+                outline: 1px solid rgb(0, 255, 119);
+                display: flex;
+                align-items: center;
+                height: 100%;
+                gap: 1rem;
+                
+                .imageContainer {
+                    display: flex;
+                    align-items: center;
+                    .profileImg {
+                        border-radius: 100px;
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+                
+                .usernameContainer {
+                    outline: 1px solid red;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--btn-red);
+                    cursor: pointer;
+
+                    .username {
+                        color: inherit;
+                    }
+                    .menuIcon {
+                        height: 1.5rem;
+                        width: 1.5rem;
+                        color: inherit;
+                        
+                    }
+
+                    &:hover {
+                        color: var(--btn-dark-red);
+                    }
+
+                }
+            }
         }
     }
 
@@ -78,7 +120,7 @@
 @media (max-width: 1025px) {
     .container {
         .searchAndMenu {
-    
+
             .logoAndSearch {
 
                 .mainTitle {
@@ -86,11 +128,14 @@
                 }
             }
         }
+
         .nav {
             .unorderedList {
                 height: 5rem;
+
                 .listElement {
                     width: 25%;
+
                     .anchor {
                         font-size: 2rem;
                     }
@@ -104,19 +149,23 @@
     .container {
         .searchAndMenu {
             flex-direction: column;
-    
+
             .logoAndSearch {
                 flex-direction: column;
+
                 .mainTitle {
                     font-size: 4rem;
                 }
             }
         }
+
         .nav {
             .unorderedList {
                 height: 5rem;
+
                 .listElement {
                     width: 25%;
+
                     .anchor {
                         font-size: 2rem;
                     }
@@ -131,8 +180,10 @@
         .nav {
             .unorderedList {
                 height: 5rem;
+
                 .listElement {
                     width: 25%;
+
                     .anchor {
                         font-size: 2rem;
                     }

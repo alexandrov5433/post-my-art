@@ -3,19 +3,27 @@ import homeBannerStyles from '@/ui/styles/home-banner.module.css';
 import home_banner from '../../../public/home_banner.jpg';
 import Button from "@/ui/button";
 import artsContainerStyles from '@/ui/styles/home-arts-container.module.css';
-import { fetchArtCards } from "@/lib/data";
+import { fetchArtCards, fetchUserData } from "@/lib/data";
 import { ArtCardData } from "@/lib/definitions";
 import { Suspense } from "react";
 import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
 import LoadingArtCards from "./loading";
 import NavBar from "@/ui/nav";
-
-// import { createDb, dropDb } from '@/lib/actions/db_prep_actions';
+import { getUserIDFromSessionCookie } from '@/lib/actions/session';
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
+  const userID = await getUserIDFromSessionCookie();
+  console.log('userID', userID);
+  let userData = null;
+  if (userID) {
+    userData = await fetchUserData(userID);
+  }
+  console.log('userData', userData);
+
+  
   return (<>
-    <NavBar></NavBar>
+    <NavBar userData={userData}></NavBar>
     <main>
 
       <section className={`${homeBannerStyles.homeBannerWrapper}`}>
