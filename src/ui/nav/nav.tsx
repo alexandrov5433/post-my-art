@@ -1,16 +1,19 @@
 'use client';
-import styles from '@/ui/nav/nav.module.css';
-import { charm } from '../fonts';
+import Image from 'next/image';
 import Search from '../search/search';
 import Button from '../button/button';
-import { UserData } from '@/lib/definitions';
-import Image from 'next/image';
 import MenuIcon from '../svgs/menu';
-import { useState } from 'react';
 import ProfileIcon from '../svgs/profile';
 import AddIcon from '../svgs/add';
 import LogoutIcon from '../svgs/logout';
+
+import PostMyArtLogo from '../../../public/postMyArtLogo.png';
+
+import { useState } from 'react';
 import { logout } from '@/lib/actions/user';
+import styles from '@/ui/nav/nav.module.css';
+import { charm } from '../fonts';
+import { UserData } from '@/lib/definitions';
 
 export default function NavBar({
     userData
@@ -26,7 +29,13 @@ export default function NavBar({
 
             <div className={styles.searchAndMenu}>
                 <div className={styles.logoAndSearch}>
-                    <h1 className={`${charm.variable} ${styles.mainTitle}`}>Post My Art</h1>
+                    <Image
+                        src={PostMyArtLogo}
+                        width={200}
+                        height={50}
+                        alt="The Post My Art logo."
+                        className={styles.logo}
+                    ></Image>
                     <Search></Search>
                 </div>
 
