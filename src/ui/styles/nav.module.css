@@ -36,6 +36,7 @@
                 height: 100%;
                 gap: 1rem;
                 position: relative;
+                min-width: 10rem;
                 
                 .imageContainer {
                     display: flex;
@@ -50,23 +51,23 @@
                 .usernameContainer {
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
+                    gap: 0.1rem;
                     color: var(--btn-red);
-                    cursor: pointer;
+                    /* cursor: pointer; */
 
                     .username {
                         color: inherit;
                     }
                     .menuIcon {
-                        height: 1.5rem;
-                        width: 1.5rem;
+                        height: 1rem;
+                        width: 1rem;
                         color: inherit;
                         
                     }
 
-                    &:hover {
+                    /* &:hover {
                         color: var(--btn-dark-red);
-                    }
+                    } */
 
                 }
 
@@ -81,30 +82,22 @@
                         display: none;
                     }
                     .item {
-                        display: inline-flex;
-                        width: 100%;
-                        /* text-align: center; */
                         padding: 1rem;
-
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
                         &:not(:last-child) {
                             border-bottom: 1px solid var(--elements-strong-emphasis);
 
                         }
-                        &.profile::before {
-                            content: '';
-                            /* background-color: blueviolet; */
-                            background-image: url(../../../public/icons/profile.svg);
-                            width: 1rem;
-                            height: 1rem;
-                            color: blueviolet;
+                        &:hover {
+                            color: var(--btn-red);
                         }
-                        /* &:add::before {
-
-                        }
-                        &:logout::before {
-
-                        } */
-
+                    }
+                    .icon {
+                        width: 1rem;
+                        height: 1rem;
+                        color: black;
                     }
                 }
             }

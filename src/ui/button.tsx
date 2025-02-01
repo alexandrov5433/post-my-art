@@ -14,7 +14,7 @@ export default function Button({
 }: {
     title: string,
     type: 'button' | 'submit',
-    stylingType: 'generic' | 'outline' | 'follow' | 'userMenu' | string[],
+    stylingType: 'generic' | 'outline' | 'follow' | 'userMenu' | 'userMenuItem' | string[],
     redirectToURL?: string | null,
     onClick?: (() => any) | null,
     disabled?: boolean,

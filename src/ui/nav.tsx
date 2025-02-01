@@ -7,6 +7,10 @@ import { UserData } from '@/lib/definitions';
 import Image from 'next/image';
 import MenuIcon from './svgs/menu';
 import { useState } from 'react';
+import ProfileIcon from './svgs/profile';
+import AddIcon from './svgs/add';
+import LogoutIcon from './svgs/logout';
+import { logout } from '@/lib/actions/user';
 
 export default function NavBar({
     userData
@@ -14,7 +18,7 @@ export default function NavBar({
     userData: UserData | null
 }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
-    const toggleMenuHiddenClass = () => { 
+    const toggleMenuHiddenClass = () => {
         setMenuOpen(!isMenuOpen);
     }
     return (
@@ -48,11 +52,23 @@ export default function NavBar({
                                 <MenuIcon className={`${styles.menuIcon}`}></MenuIcon>
                             </div>
                             <div className={`${styles.menu} ${isMenuOpen ? '' : styles.hide}`}>
-                                <ul>
-                                    <li className={`${styles.item} ${styles.profile}`}><a href="#">My Profile</a></li>
-                                    <li className={`${styles.item} ${styles.add}`}><a href="#">Add Art</a></li>
-                                    <li className={`${styles.item} ${styles.logout}`}><a href="#">Logout</a></li>
-                                </ul>
+                                <div className={`${styles.item}`}>
+                                    <ProfileIcon className={`${styles.icon}`}></ProfileIcon>
+                                    <a href="#">My Profile</a>
+                                </div>
+                                <div className={`${styles.item}`}>
+                                    <AddIcon className={`${styles.icon}`}></AddIcon>
+                                    <a href="#">Add Art</a>
+                                </div>
+                                <div className={`${styles.item}`}>
+                                    <LogoutIcon className={`${styles.icon}`}></LogoutIcon>
+                                    <Button
+                                        type='button'
+                                        stylingType='userMenuItem'
+                                        title='Logout'
+                                        onClick={logout}
+                                    ></Button>
+                                </div>
                             </div>
                         </div>
                         : <div className={styles.controls}>
