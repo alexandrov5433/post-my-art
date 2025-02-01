@@ -1,27 +1,26 @@
 import Image from "next/image";
+import { Suspense } from "react";
+
 import homeBannerStyles from '@/ui/homeComponents/home-banner.module.css';
 import home_banner from '../../../public/home_banner.jpg';
-import Button from "@/ui/button/button";
 import artsContainerStyles from '@/ui/homeComponents/home-arts-container.module.css';
-import { fetchArtCards, fetchUserData } from "@/lib/data";
-import { ArtCardData } from "@/lib/definitions";
-import { Suspense } from "react";
 import ArtCardsHomeOverview from "@/ui/homeComponents/art-cards-home-overview";
 import LoadingArtCards from "./loading";
+import Button from "@/ui/button/button";
 import NavBar from "@/ui/nav/nav";
+import Footer from "@/ui/footer/footer";
+
+import { fetchArtCards, fetchUserData } from "@/lib/data";
+import { ArtCardData } from "@/lib/definitions";
 import { getUserIDFromSessionCookie } from '@/lib/actions/session';
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
   const userID = await getUserIDFromSessionCookie();
-  console.log('userID', userID);
   let userData = null;
   if (userID) {
     userData = await fetchUserData(userID);
   }
-  console.log('userData', userData);
-
-  
   return (<>
     <NavBar userData={userData}></NavBar>
     <main>
@@ -50,6 +49,10 @@ export default async function Home() {
         <div className={`${artsContainerStyles.bottomButtonContainer}`}>
           <Button type="button" stylingType="generic" title="TO DO"></Button>
         </div>
+      </section>
+
+      <section>
+        <Footer></Footer>
       </section>
 
     </main>
