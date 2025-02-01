@@ -1,6 +1,6 @@
 import Image from "next/image";
-import searchIcon from '../../public/icons/search.svg';
-import styles from '@/ui/styles/search.module.css';
+import searchIcon from '../../../public/icons/search.svg';
+import styles from '@/ui/search/search.module.css';
 
 export default function Search() {
     return (

@@ -3,8 +3,8 @@
 import { ArtCardData } from "@/lib/definitions";
 import { use } from "react";
 import useMasonry from "@/lib/hooks/useMasonry";
-import homeArtsContainerStyle from '@/ui/styles/home-arts-container.module.css';
-import ArtCard from "./art-card";
+import homeArtsContainerStyle from '@/ui/homeComponents/home-arts-container.module.css';
+import ArtCard from "../artCard/art-card";
 
 export default function ArtCardsHomeOverview({
     cardsData

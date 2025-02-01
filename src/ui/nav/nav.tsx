@@ -1,15 +1,15 @@
 'use client';
-import styles from '@/ui/styles/nav.module.css';
-import { charm } from './fonts';
-import Search from './search';
-import Button from './button';
+import styles from '@/ui/nav/nav.module.css';
+import { charm } from '../fonts';
+import Search from '../search/search';
+import Button from '../button/button';
 import { UserData } from '@/lib/definitions';
 import Image from 'next/image';
-import MenuIcon from './svgs/menu';
+import MenuIcon from '../svgs/menu';
 import { useState } from 'react';
-import ProfileIcon from './svgs/profile';
-import AddIcon from './svgs/add';
-import LogoutIcon from './svgs/logout';
+import ProfileIcon from '../svgs/profile';
+import AddIcon from '../svgs/add';
+import LogoutIcon from '../svgs/logout';
 import { logout } from '@/lib/actions/user';
 
 export default function NavBar({

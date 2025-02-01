@@ -1,10 +1,10 @@
 import { ArtCardData } from "@/lib/definitions";
-import styles from '@/ui/styles/art-card.module.css';
+import styles from '@/ui/artCard/art-card.module.css';
 import Image from "next/image";
-import Button from "./button";
-import HeartIcon from "./svgs/heart";
-import CommentBubblesIcon from "./svgs/commentBubbles";
-import StarIcon from "./svgs/star";
+import Button from "../button/button";
+import HeartIcon from "../svgs/heart";
+import CommentBubblesIcon from "../svgs/commentBubbles";
+import StarIcon from "../svgs/star";
 
 export default function ArtCard(
     data: ArtCardData,

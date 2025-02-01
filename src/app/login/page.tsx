@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/ui/button';
+import Button from '@/ui/button/button';
 import styles from '@/ui/styles/login.module.css';
 import ArrowLeft from '@/ui/svgs/arrow_left';
 import Link from 'next/link';

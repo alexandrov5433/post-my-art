@@ -1,7 +1,7 @@
 'use client';
-import styles from '@/ui/styles/button.module.css';
+import styles from '@/ui/button/button.module.css';
 import { useRouter } from 'next/navigation';
-import Loader from './loader';
+import Loader from '../loader/loader';
 
 export default function Button({
     title,

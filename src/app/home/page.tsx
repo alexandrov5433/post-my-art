@@ -1,14 +1,14 @@
 import Image from "next/image";
-import homeBannerStyles from '@/ui/styles/home-banner.module.css';
+import homeBannerStyles from '@/ui/homeComponents/home-banner.module.css';
 import home_banner from '../../../public/home_banner.jpg';
-import Button from "@/ui/button";
-import artsContainerStyles from '@/ui/styles/home-arts-container.module.css';
+import Button from "@/ui/button/button";
+import artsContainerStyles from '@/ui/homeComponents/home-arts-container.module.css';
 import { fetchArtCards, fetchUserData } from "@/lib/data";
 import { ArtCardData } from "@/lib/definitions";
 import { Suspense } from "react";
-import ArtCardsHomeOverview from "@/ui/art-cards-home-overview";
+import ArtCardsHomeOverview from "@/ui/homeComponents/art-cards-home-overview";
 import LoadingArtCards from "./loading";
-import NavBar from "@/ui/nav";
+import NavBar from "@/ui/nav/nav";
 import { getUserIDFromSessionCookie } from '@/lib/actions/session';
 
 export default async function Home() {
