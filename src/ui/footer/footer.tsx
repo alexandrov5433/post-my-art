@@ -15,12 +15,12 @@ export default function Footer({
     return (
         <div className={`${styles.allContainer}`}>
             <section className={`${styles.content}`}>
-                <article>
+                <article className={`${styles.about}`}>
                     <h4 className={`${styles.title}`}>About Us</h4>
                     <p className={`${styles.paragraph}`}>Post My Art is a virtual platform that helps artists publish their art work for free using innovative tools. Post My Art lets you expose your arts via the Web, a virtual world platform, accessible through any devices.</p>
                     <p className={`${styles.paragraph}`}>It offers you a personal gallery that and allows you to display your art works through an intuitive interface.</p>
                 </article>
-                <article>
+                <article className={`${styles.useful}`}>
                     <h4 className={`${styles.title}`}>Useful Links</h4>
                     <ul>
                         <li className={`${styles.usefulLink}`}><Link href="/contact-us">Contact Us</Link></li>
@@ -39,7 +39,7 @@ export default function Footer({
                         <li className={`${styles.usefulLink}`}><Link href="/privacy">Privacy Policy</Link></li>
                     </ul>
                 </article>
-                <article>
+                <article className={`${styles.social}`}>
                     <h4 className={`${styles.title}`}>Social Links</h4>
                     <div className={`${styles.socialLinksContainer}`}>
                         <Link href="https://www.linkedin.com/in/aleksandar-darakev-4094b8347/" className={`${styles.socialLink}`}>

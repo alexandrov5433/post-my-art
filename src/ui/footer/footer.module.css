@@ -33,7 +33,9 @@
         border-bottom: 1px solid var(--text-forth);
         margin-bottom: 0.5rem;
     }
-    &:active, &:hover {
+
+    &:active,
+    &:hover {
         color: var(--btn-red);
     }
 }
@@ -52,7 +54,9 @@
     max-width: fit-content;
     padding: 1rem 2rem;
     color: var(--text-third);
-    &:active, &:hover {
+
+    &:active,
+    &:hover {
         color: var(--text-forth);
     }
 }
@@ -72,4 +76,47 @@
 
 .linkText {
     color: inherit;
+}
+
+@media (min-width: 1025px) {
+    .allContainer {
+        font-size: 1rem;
+        text-indent: 0;
+    }
+
+    .content {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .about {
+        flex: 0 1 auto;
+    }
+    
+    .useful {
+        flex: 1 0 auto;
+        
+    }
+    
+    .social {
+        flex: 1 0 20%;
+        text-indent: 0;
+    }
+
+    .socialLink {
+        padding: 0.5rem 1rem;
+    }
+
+    .linkContent {
+        gap: 0.5rem;
+    }
+
+    .linkIcon {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .copyright {
+        text-align: center;
+    }
 }
