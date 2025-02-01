@@ -54,11 +54,21 @@ export default function NavBar({
                             <div className={`${styles.menu} ${isMenuOpen ? '' : styles.hide}`}>
                                 <div className={`${styles.item}`}>
                                     <ProfileIcon className={`${styles.icon}`}></ProfileIcon>
-                                    <a href="#">My Profile</a>
+                                    <Button
+                                        type='button'
+                                        stylingType='userMenuItem'
+                                        title='My Profile'
+                                        onClick={() => console.log('TODO')}
+                                    ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
                                     <AddIcon className={`${styles.icon}`}></AddIcon>
-                                    <a href="#">Add Art</a>
+                                    <Button
+                                        type='button'
+                                        stylingType='userMenuItem'
+                                        title='Add Art'
+                                        onClick={() => console.log('TODO')}
+                                    ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
                                     <LogoutIcon className={`${styles.icon}`}></LogoutIcon>

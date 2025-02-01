@@ -150,7 +150,42 @@
 @media (max-width: 1025px) {
     .container {
         .searchAndMenu {
-
+            .user {
+                .loggedIn {
+                    gap: 1rem;
+                    min-width: 22rem;
+                    
+                    .imageContainer {
+                        .profileImg {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+                    
+                    .usernameContainer {
+                        gap: 0.1rem;
+                        color: var(--btn-red);
+                        .menuIcon {
+                            height: 2rem;
+                            width: 2rem;
+                        }  
+                    }
+    
+                    .menu {                     
+                        .item {
+                            padding: 2rem;
+                            gap: 2rem;
+                            &:active {
+                                color: var(--btn-red);
+                            }
+                        }
+                        .icon {
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+            }
             .logoAndSearch {
 
                 .mainTitle {
@@ -179,7 +214,42 @@
     .container {
         .searchAndMenu {
             flex-direction: column;
-
+            .user {
+                .loggedIn {
+                    gap: 1rem;
+                    min-width: 22rem;
+                    
+                    .imageContainer {
+                        .profileImg {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+                    
+                    .usernameContainer {
+                        gap: 0.1rem;
+                        color: var(--btn-red);
+                        .menuIcon {
+                            height: 2rem;
+                            width: 2rem;
+                        }  
+                    }
+    
+                    .menu {                     
+                        .item {
+                            padding: 2rem;
+                            gap: 2rem;
+                            &:active {
+                                color: var(--btn-red);
+                            }
+                        }
+                        .icon {
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+            }
             .logoAndSearch {
                 flex-direction: column;
 
@@ -207,6 +277,44 @@
 
 @media (max-width: 641px) {
     .container {
+        .searchAndMenu {
+            .user {
+                .loggedIn {
+                    gap: 1rem;
+                    min-width: 22rem;
+                    
+                    .imageContainer {
+                        .profileImg {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+                    
+                    .usernameContainer {
+                        gap: 0.1rem;
+                        color: var(--btn-red);
+                        .menuIcon {
+                            height: 2rem;
+                            width: 2rem;
+                        }  
+                    }
+    
+                    .menu {                     
+                        .item {
+                            padding: 2rem;
+                            gap: 2rem;
+                            &:active {
+                                color: var(--btn-red);
+                            }
+                        }
+                        .icon {
+                            width: 3rem;
+                            height: 3rem;
+                        }
+                    }
+                }
+            }
+        }
         .nav {
             .unorderedList {
                 height: 5rem;
