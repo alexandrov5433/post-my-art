@@ -13,11 +13,12 @@ import Footer from "@/ui/footer/footer";
 import { fetchArtCards, fetchUserData } from "@/lib/data";
 import { ArtCardData } from "@/lib/definitions";
 import { getUserIDFromSessionCookie } from '@/lib/actions/session';
+import { UserData } from "@/lib/definitions";
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
   const userID = await getUserIDFromSessionCookie();
-  let userData = null;
+  let userData: UserData | null = null;
   if (userID) {
     userData = await fetchUserData(userID);
   }
@@ -52,7 +53,7 @@ export default async function Home() {
       </section>
 
       <section>
-        <Footer></Footer>
+        <Footer userData={userData}></Footer>
       </section>
 
     </main>
