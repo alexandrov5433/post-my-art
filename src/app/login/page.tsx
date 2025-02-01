@@ -8,7 +8,7 @@ import { login } from '@/lib/actions/user';
 
 export default function Login() {
     const [state, formAction, pending] = useActionState(login, null);
-    const [formValues, setValues] = useState({ username: null });
+    const [formValues, setValues] = useState({ username: '' });
     return (
         <main className={`${styles.mainContainer}`}>
             <form className={`${styles.container}`} action={formAction}>
@@ -20,7 +20,10 @@ export default function Login() {
 
                     <div className={`${styles.inputContainer} ${state?.username.msg ? styles.falseInput : ''}`}>
                         <span className={`${styles.title}`}>Username</span>
-                        <input className={`${styles.field}`} type="text" name="username" />
+                        <input className={`${styles.field}`} type="text" name="username"
+                            value={formValues?.username}
+                            onChange={(e) => setValues({ username: e.currentTarget.value })}
+                        />
                     </div>
                     {
                         state?.username.msg ?

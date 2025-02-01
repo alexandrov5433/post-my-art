@@ -3,6 +3,7 @@ import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';
 import z from 'zod';
 import { genJWTAndSetSessionCookie, deleteSessionCookie } from "./session";
+import { redirect } from "next/navigation";
 
 
 const UserRegistrationFormSchema = z.object({
@@ -112,7 +113,7 @@ export async function register(
             INSERT INTO "User" (username, email, password, "profilePictureURL")
             VALUES (${data.username}, ${data.email}, ${data.password}, ${data.profilePictureUrl})
         `;
-        // get new user´s userID
+        // get new users userID
         const { rows } = await sql`SELECT ("userID") FROM "User" WHERE (username = ${data.username});`;
         if (!rows[0]?.userID) {
             throw new Error(`Could not find a user with username: "${data.username}".`);
@@ -125,11 +126,7 @@ export async function register(
         console.error((err as Error).message);
         return previousState;
     }
-    // return successful previousState 
-    previousState.success = true;
-    previousState.username.previousValue = formData.get('username') as string;
-    previousState.email.previousValue = formData.get('email') as string;
-    return previousState;
+    redirect('/home');
 }
 
 export async function login(
@@ -162,7 +159,10 @@ export async function login(
     try {
         const { rows } = await sql`SELECT ("userID", username, password) FROM "User" WHERE (username = ${usernameToCheck});`;
         if (!rows[0]?.row) {
-            throw new Error(`Could not find a user with username: "${usernameToCheck}".`);
+            previousState.success = false;
+            previousState.username.msg = `Could not find a user with username: "${usernameToCheck}".`;
+            previousState.username.previousValue = usernameToCheck;
+            return previousState;
         }
         const [id, username, hash] = rows[0].row.slice(1, rows[0].row.length - 1).split(',');
         const passwordsMatch = await bcrypt.compare(passwordToCheck, hash);
@@ -180,7 +180,9 @@ export async function login(
         previousState.username.previousValue = usernameToCheck;
         return previousState;
     }
-    previousState.success = true;
-    previousState.username.previousValue = usernameToCheck;
-    return previousState;
+    redirect('/home');
+}
+
+export async function logout() {
+    await deleteSessionCookie();
 }

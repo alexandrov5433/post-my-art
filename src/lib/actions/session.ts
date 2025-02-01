@@ -1,6 +1,6 @@
 'use server';
 import { cookies } from "next/headers";
-import { createJWT, validateJWT } from "../util/jwt";
+import { createJWT, JwtPayload, validateJWT } from "../util/jwt";
 
 export async function genJWTAndSetSessionCookie(userID: string | number, mustCookiePersistAfterSessionEnds: boolean = true) {
     const token = await createJWT({ userID: userID.toString() });
@@ -27,16 +27,17 @@ export async function deleteSessionCookie() {
 }
 
 export async function getUserIDFromSessionCookie(): Promise<string | null> {
-    const cookiePool = await cookies();
-    const c: { name: string, value: string } | undefined = cookiePool.get('session');
-    if (!c) { return null };
-    const payload = await validateJWT(c.value);
-    if (payload instanceof Error) {
-        console.error(payload.message);
+    try {
+        const cookiePool = await cookies();
+        const c: { name: string, value: string } | undefined = cookiePool.get('session');
+        if (!c) { return null };
+        const payload = await validateJWT(c.value);
+        if (!payload || (payload as JwtPayload).userID.length === 0) {
+            return null;
+        }
+        return (payload as JwtPayload).userID;
+    } catch (err) {
+        console.log('ERROR occured while validating the JWT:', (err as Error).message);
         return null;
     }
-    if (!payload || payload.userID.length === 0) {
-        return null;
-    }
-    return payload.userID;
 }
