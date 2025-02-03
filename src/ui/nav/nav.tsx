@@ -14,12 +14,14 @@ import { logout } from '@/lib/actions/user';
 import styles from '@/ui/nav/nav.module.css';
 import { charm } from '../fonts';
 import { UserData } from '@/lib/definitions';
+import { useRouter } from 'next/navigation';
 
 export default function NavBar({
     userData
 }: {
     userData: UserData | null
 }) {
+    const router = useRouter();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const toggleMenuHiddenClass = () => {
         setMenuOpen(!isMenuOpen);
@@ -67,7 +69,7 @@ export default function NavBar({
                                         type='button'
                                         stylingType='userMenuItem'
                                         title='My Profile'
-                                        onClick={() => console.log('TODO')}
+                                        onClick={() => router.push('/my-profile')}
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
