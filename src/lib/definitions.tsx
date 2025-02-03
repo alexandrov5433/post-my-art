@@ -33,5 +33,6 @@ export interface UserData     {
     instagramURL: string | null,
     facebookURL: string | null,
     exURL: string | null,
-    publicEmail: string | null
+    publicEmail: string | null,
+    userDescription: string | null
 }
