@@ -12,16 +12,13 @@ import PostMyArtLogo from '../../../public/postMyArtLogo.png';
 import { useState } from 'react';
 import { logout } from '@/lib/actions/user';
 import styles from '@/ui/nav/nav.module.css';
-import { charm } from '../fonts';
 import { UserData } from '@/lib/definitions';
-import { useRouter } from 'next/navigation';
 
 export default function NavBar({
     userData
 }: {
     userData: UserData | null
 }) {
-    const router = useRouter();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const toggleMenuHiddenClass = () => {
         setMenuOpen(!isMenuOpen);
@@ -69,7 +66,7 @@ export default function NavBar({
                                         type='button'
                                         stylingType='userMenuItem'
                                         title='My Profile'
-                                        onClick={() => router.push('/my-profile')}
+                                        redirectToURL='/my-profile'
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
@@ -78,7 +75,7 @@ export default function NavBar({
                                         type='button'
                                         stylingType='userMenuItem'
                                         title='Add Art'
-                                        onClick={() => console.log('TODO')}
+                                        redirectToURL='/add-art'
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
