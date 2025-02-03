@@ -1,0 +1,52 @@
+.mainWrapper {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100dvh;
+    display: flex;
+    align-items: flex-start;
+    background: url(../../../public/not-found-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right 42%;
+}
+
+.contentWrapper {
+    width: 100%;
+    color: var(--elements-main);
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.01));
+    padding: 2rem 1rem;
+}
+
+.number {
+    font-size: 10rem;
+    margin: 0;
+}
+
+.colorInherit {
+    color: inherit;
+}
+
+.firstSentance {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.secondSentance {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+@media (min-width: 1025px) {
+    .number {
+        font-size: 8rem;
+    }
+    
+    .firstSentance {
+        font-size: 2rem;
+    }
+    
+    .secondSentance {
+        font-size: 1rem;
+    }
+}
