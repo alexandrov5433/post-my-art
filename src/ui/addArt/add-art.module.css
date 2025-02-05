@@ -2,19 +2,32 @@
     height: fit-content;
     width: 100%;
     font-size: 2rem;
-    padding: 0 1rem;
-    padding-bottom: 3rem;
+    padding: 3rem 1rem;
+
+    background: url(../../../public/add-art-asset.webp) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    color: var(--btn-white);
+
     h1 {
+        margin-top: 0;
         font-size: 3rem;
         text-align: center;
+        color: inherit;
     }
 
     p {
         text-align: center;
+        color: inherit;
+        font-size: 2rem;
     }
 }
 
 .uploadForm {
+    --transparent-white: rgba(255, 255, 255, 0.8);
 
     .inputSection {
         display: flex;
@@ -32,9 +45,11 @@
         width: 100%;
         padding: 0 1rem;
         margin-bottom: 1rem;
+        background-color: var(--transparent-white);
 
         &.falseInput {
             border-color: var(--btn-red);
+            border-width: 0.2rem;
         }
 
         &.description {
@@ -58,14 +73,63 @@
 
     .note {
         color: var(--text-third);
+        color: var(--btn-white);
+        opacity: 90%;
     }
 
     .errorMessage {
         color: var(--btn-red);
+        background-color: var(--transparent-white);
+        border-radius: 4px;
+        padding: 0.2rem 0.5rem;
     }
 
     .submitButtonContainer {
         display: flex;
         justify-content: center;
+    }
+}
+
+@media (min-width: 1025px) {
+    .mainWrapper {
+        font-size: clamp(10px, 3vw, 16px);
+        padding: 3rem 15rem;
+
+        h1 {
+            font-size: 2.4em;
+        }
+
+        p {
+            color: inherit;
+            font-size: 1.5em;
+        }
+    }
+
+    .uploadForm {
+        /* --transparent-white: rgba(255, 255, 255, 0.8); */
+
+        .inputElement {
+            /* background-color: var(--transparent-white); */
+
+            /* &.falseInput {
+                border-color: var(--btn-red);
+                border-width: 0.2rem;
+            } */
+
+            &.description {
+                min-height: 10rem;
+            }
+        }
+
+        /* .note {
+            color: var(--btn-white);
+            opacity: 90%;
+        } */
+
+        /* .errorMessage {
+            background-color: var(--transparent-white);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+        } */
     }
 }
