@@ -9,20 +9,16 @@ export default function AddArt({
 }: {
     userData: UserData
 }) {
-    const [charsLeft, setCharsLeft]  = useState(100);
+    const [charsLeft, setCharsLeft] = useState(100);
     const [nameInputBlocked, setNameInputBlocked] = useState(false);
     const calcCharsLeft = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // console.log(e);
         const inputType = (e.nativeEvent as InputEvent).inputType;
-        console.log(inputType);
-        if (!inputType.includes('deleteContent')) {
-            if (charsLeft) {
-                setCharsLeft(100 - e.currentTarget.value.length);
-                setNameInputBlocked(false);
-            } else {
-                setNameInputBlocked(true);
-            }
+        if (!charsLeft && !inputType.includes('deleteContent')) {          
+            //remove added char
+            const val = e.currentTarget.value;
+            e.currentTarget.value = val.slice(0, val.length - 1);
         }
+        setCharsLeft(100 - e.currentTarget.value.length);
     };
     return (
         <main className={`${styles.mainWrapper}`}>
@@ -34,7 +30,7 @@ export default function AddArt({
                 <form action="">
                     <div>
                         <label htmlFor="nameInput"></label>
-                        <input type="text" id="nameInput" onChange={calcCharsLeft}/>
+                        <input type="text" onChange={calcCharsLeft} />
                         <p>Characters left: {charsLeft}</p>
                     </div>
                 </form>
