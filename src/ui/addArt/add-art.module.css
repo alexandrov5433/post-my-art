@@ -1,13 +1,71 @@
 .mainWrapper {
     height: fit-content;
     width: 100%;
+    font-size: 2rem;
+    padding: 0 1rem;
+    padding-bottom: 3rem;
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
 }
 
-.imageSection {
-    outline: 1px solid red;
-    display: none;
-}
+.uploadForm {
 
-.uploadSection {
-    
+    .inputSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 4rem;
+    }
+
+    .inputElement {
+        border: 1.5px solid var(--elements-emphasis);
+        position: relative;
+        border-radius: 8px;
+        height: 3.5rem;
+        width: 100%;
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+
+        &.falseInput {
+            border-color: var(--btn-red);
+        }
+
+        &.description {
+            min-height: 30rem;
+        }
+    }
+
+    .artSecondLabel {
+        border-radius: 50rem;
+        padding: 1rem 2rem;
+        margin: 1rem 0;
+        font-weight: bold;
+        background-color: var(--btn-red);
+        color: var(--btn-white);
+    }
+
+    .artFileInput {
+        display: none;
+        pointer-events: none;
+    }
+
+    .note {
+        color: var(--text-third);
+    }
+
+    .errorMessage {
+        color: var(--btn-red);
+    }
+
+    .submitButtonContainer {
+        display: flex;
+        justify-content: center;
+    }
 }
