@@ -20,7 +20,7 @@ export interface RegisterData {
     profilePictureURL: string,
 }
 
-export interface UserData     {
+export interface UserData {
     userID: number,
     username: string,
     email: string,
@@ -35,4 +35,12 @@ export interface UserData     {
     exURL: string | null,
     publicEmail: string | null,
     userDescription: string | null
+}
+
+export interface ArtUploadData {
+    artOwnerID: number,
+    artPictureURL: string,
+    name: string,
+    description: string,
+    tags: Array<string>,
 }
