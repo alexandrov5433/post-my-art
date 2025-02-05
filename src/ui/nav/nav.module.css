@@ -33,11 +33,10 @@
             .loggedIn {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                min-width: 10rem;
                 height: 100%;
                 gap: 1rem;
                 position: relative;
-                /* min-width: 10rem; */
                 
                 .imageContainer {
                     display: flex;
@@ -59,7 +58,7 @@
                         color: inherit;
                     }
                     .menuIcon {
-                        font-size: 2rem;
+                        font-size: 1rem;
                     }
 
                 }
@@ -223,11 +222,7 @@
                     
                     .usernameContainer {
                         gap: 0.1rem;
-                        color: var(--btn-red);
-                        .menuIcon {
-                            height: 2rem;
-                            width: 2rem;
-                        }  
+                        color: var(--btn-red); 
                     }
     
                     .menu {
