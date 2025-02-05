@@ -2,10 +2,6 @@
 import Image from 'next/image';
 import Search from '../search/search';
 import Button from '../button/button';
-import MenuIcon from '../svgs/menu';
-// import ProfileIcon from '../svgs/profile';
-import AddIcon from '../svgs/add';
-import LogoutIcon from '../svgs/logout';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
