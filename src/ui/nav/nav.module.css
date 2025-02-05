@@ -33,10 +33,11 @@
             .loggedIn {
                 display: flex;
                 align-items: center;
+                justify-content: flex-end;
                 height: 100%;
                 gap: 1rem;
                 position: relative;
-                min-width: 10rem;
+                /* min-width: 10rem; */
                 
                 .imageContainer {
                     display: flex;
@@ -53,16 +54,12 @@
                     align-items: center;
                     gap: 0.1rem;
                     color: var(--btn-red);
-                    /* cursor: pointer; */
 
                     .username {
                         color: inherit;
                     }
                     .menuIcon {
-                        height: 1rem;
-                        width: 1rem;
-                        color: inherit;
-                        
+                        font-size: 2rem;
                     }
 
                 }
@@ -86,14 +83,6 @@
                             border-bottom: 1px solid var(--elements-strong-emphasis);
 
                         }
-                        &:hover {
-                            color: var(--btn-red);
-                        }
-                    }
-                    .icon {
-                        width: 1rem;
-                        height: 1rem;
-                        color: black;
                     }
                 }
             }
@@ -168,22 +157,18 @@
                         gap: 0.1rem;
                         color: var(--btn-red);
                         .menuIcon {
-                            height: 2rem;
-                            width: 2rem;
-                        }  
+                            font-size: 2rem;
+                        }
                     }
+
     
                     .menu {                     
                         .item {
                             padding: 2rem;
                             gap: 2rem;
-                            &:active {
-                                color: var(--btn-red);
-                            }
                         }
                         .icon {
-                            width: 3rem;
-                            height: 3rem;
+                            font-size: 2rem;
                         }
                     }
                 }
@@ -227,7 +212,7 @@
             .user {
                 .loggedIn {
                     gap: 1rem;
-                    min-width: 22rem;
+                    min-width: 100%;
                     
                     .imageContainer {
                         .profileImg {
@@ -245,7 +230,9 @@
                         }  
                     }
     
-                    .menu {                     
+                    .menu {
+                        right: -50%;
+                        min-width: 50vw;                 
                         .item {
                             padding: 2rem;
                             gap: 2rem;
@@ -254,8 +241,7 @@
                             }
                         }
                         .icon {
-                            width: 3rem;
-                            height: 3rem;
+                            font-size: 3rem;
                         }
                     }
                 }
@@ -299,7 +285,7 @@
             .user {
                 .loggedIn {
                     gap: 1rem;
-                    min-width: 22rem;
+                    min-width: 100%;
                     
                     .imageContainer {
                         .profileImg {
@@ -317,7 +303,9 @@
                         }  
                     }
     
-                    .menu {                     
+                    .menu {
+                        right: -60%;
+                        min-width: 80vw;               
                         .item {
                             padding: 2rem;
                             gap: 2rem;

@@ -3,9 +3,13 @@ import Image from 'next/image';
 import Search from '../search/search';
 import Button from '../button/button';
 import MenuIcon from '../svgs/menu';
-import ProfileIcon from '../svgs/profile';
+// import ProfileIcon from '../svgs/profile';
 import AddIcon from '../svgs/add';
 import LogoutIcon from '../svgs/logout';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faPlus, faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 
 import PostMyArtLogo from '../../../public/postMyArtLogo.png';
 
@@ -57,11 +61,11 @@ export default function NavBar({
                                     title={userData.username}
                                     onClick={toggleMenuHiddenClass}
                                 ></Button>
-                                <MenuIcon className={`${styles.menuIcon}`}></MenuIcon>
+                                <FontAwesomeIcon icon={faBars} className={`${styles.menuIcon}`}/>
                             </div>
                             <div className={`${styles.menu} ${isMenuOpen ? '' : styles.hide}`}>
                                 <div className={`${styles.item}`}>
-                                    <ProfileIcon className={`${styles.icon}`}></ProfileIcon>
+                                    <FontAwesomeIcon icon={faUser} className={`${styles.icon}`}/>
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
@@ -70,7 +74,7 @@ export default function NavBar({
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
-                                    <AddIcon className={`${styles.icon}`}></AddIcon>
+                                    <FontAwesomeIcon icon={faPlus} className={`${styles.icon}`}/>
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
@@ -79,7 +83,8 @@ export default function NavBar({
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
-                                    <LogoutIcon className={`${styles.icon}`}></LogoutIcon>
+                                    
+                                <FontAwesomeIcon icon={faArrowRightFromBracket} className={`${styles.icon}`}/>
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
