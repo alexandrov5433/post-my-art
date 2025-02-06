@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, use, Suspense } from 'react';
+import { useState, useRef, use, Suspense, useEffect, useActionState } from 'react';
 
 import { UserData, ArtUploadData } from '@/lib/definitions';
 import styles from '@/ui/addArt/add-art.module.css';
@@ -16,15 +16,14 @@ export default function AddArt({
     userData: UserData
 }) {
     const [charsLeft, setCharsLeft] = useState(100);
-    const [errorState, setErrorState] = useState({
-        name: false,
-        file: false,
-        other: ''
-    });
-    const [isUploadInProgressState, setUploadProgressState] = useState(false);
+    const [nameError, setNameError] = useState(false);
+    const [nameUntouched, setNameUntouched] = useState(true);
+    const [fileError, setFileError] = useState(false);
+    const [fileUntouched, setfileUntouched] = useState(true);
     const [selectedFileNameState, setSelectedFileNameState] = useState('No File Selected!');
+
     const formRef = useRef(null);
-    // const uploadedFileNameInputRef = useRef(null);
+    const uploadedFileHiddenInputRef = useRef(null);
 
     const calcCharsLeft = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputType = (e.nativeEvent as InputEvent).inputType;
@@ -36,108 +35,62 @@ export default function AddArt({
         setCharsLeft(100 - e.currentTarget.value.length);
     };
 
-    const fileCheckAndDisplayFileName = () => {
-        
-        
+    const checkName = () => {
         const formData = new FormData(formRef.current! as HTMLFormElement);
-        const artFile = (formData.get('artFile') as File) || '';
-        let fileErrors = [
-            (artFile as File).size > FILE_SIZE_LIMIT ? true : false,
-            !['image/jpeg', 'image/png'].includes((artFile as File).type)
-        ];
-        console.log('fileErrors', fileErrors);
-        
-        setErrorState({
-            name: errorState.name,
-            file: fileErrors.includes(true), //state is not beeing set...why??? always goes in else block
-            other: errorState.other
-        })
-        console.log('errorState', errorState);
-        if (errorState.file) {
-            console.log('if block');
-            console.log('errorState.file', errorState.file);
-            // error; clear name
-            setSelectedFileNameState('No File Selected!');
-        } else {
-            console.log('else block');
+        const artName = (formData.get('name') as string) || '';
+        setNameError(!Boolean(artName));
+        setNameUntouched(false);
+    };
+
+    const nameInputOnChangeListeners = (e: React.ChangeEvent<HTMLInputElement>) => {
+        checkName();
+        calcCharsLeft(e);
+    };
+
+    const resetHiddenInputValue = () => {
+        (uploadedFileHiddenInputRef.current as unknown as HTMLInputElement).value = '';
+    };
+
+    const fileCheckAndDisplayFileName = () => {
+        try {
+            setfileUntouched(false);
+            const formData = new FormData(formRef.current! as HTMLFormElement);
+            const artFile = (formData.get('artFile') as File) || '';
+            if (!artFile) {
+                throw null;
+            }
+            let fileErrors = [
+                (artFile as File).size > FILE_SIZE_LIMIT ? true : false,
+                !['image/jpeg', 'image/png'].includes((artFile as File).type)
+            ];
+            setFileError(fileErrors.includes(true));
+            if (fileErrors.includes(true)) {
+                // error; clear name
+                throw null;
+            }
             // no errors; set name
             setSelectedFileNameState(artFile.name);
+        } catch (err) {
+            // error; clear name and reset file input value
+            resetHiddenInputValue();
+            setSelectedFileNameState('No File Selected!');
         }
     }
 
-    const submitArt = () => {
-        setUploadProgressState(true);
-        const artData: ArtUploadData = {
-            artOwnerID: Number(userData.userID),
-            artPictureURL: '',
-            name: '',
-            description: '',
-            tags: [],
-        }
-        const formData = new FormData(formRef.current! as HTMLFormElement);
-
-        const artName = (formData.get('name') as string) || '';
-        artData.description = (formData.get('description') as string) || '';
-        const artTags = (formData.get('tags') as string) || '';
-        const artFile = (formData.get('artFile') as File) || '';
-
-        // check file and name
-        setErrorState({
-            name: Boolean(artName),
-            file: errorState.file,
-            other: errorState.other
-        })
-        fileCheckAndDisplayFileName();
-        if (errorState.name || errorState.file) {
-            return;
-        }
-        artData.name = artName;
-        // upload file to blob storage
-        try {
-            const res: PutBlobResult = use(uploadArtFile(artFile));
-            // add returned file url to artData
-            artData.artPictureURL = res.url;
-        } catch (err) {
-            console.log('Error data\n', err);
-            
-            setErrorState({
-                name: errorState.name,
-                file: errorState.file,
-                other: `${(err as Error).message}`
-            })
-            setUploadProgressState(false);
-            return;
-        }
-        // process tags
-        artData.tags = artTags
-            .split(' ')
-            .filter(t => t.length > 0) || [];
-
-        console.log('artData\n', artData);
-        
-
-        // add artData in DB
-        // redirect user
-        setUploadProgressState(false);
-
-    };
-
-
-
-
+    const [state, formAction, isPending] = useActionState(uploadArtFile, { error: '' });
 
     return (
         <main className={`${styles.mainWrapper}`}>
 
             <h1>Upload Your Art</h1>
-            <form ref={formRef} className={`${styles.uploadForm}`}>
+            <form ref={formRef} className={`${styles.uploadForm}`} action={formAction}>
 
                 <div className={`${styles.inputSection}`}>
                     <label htmlFor="name">Name</label>
-                    <input type="text" placeholder='Enter the name of your Art' id='name' name='name' onChange={calcCharsLeft} className={`${styles.inputElement} ${errorState.name ? styles.falseInput : ''}`} />
+                    <input type="text" placeholder='Enter the name of your Art' id='name' name='name' onChange={nameInputOnChangeListeners} className={`${styles.inputElement} ${nameError ? styles.falseInput : ''}`} />
                     <p>Characters left: {charsLeft}</p>
                     {
-                        errorState.name ?
+                        nameError ?
                             <p className={`${styles.errorMessage}`}>Name is missing!</p>
                             : ''
                     }
@@ -158,11 +111,12 @@ export default function AddArt({
                     <label htmlFor="artFile">Art</label>
                     <label htmlFor="artFile" className={`${styles.artSecondLabel}`}>Select File</label>
                     {/* hidden */}
-                    <input type="file" id='artFile' name='artFile' className={`${styles.artFileInput}`} onChange={fileCheckAndDisplayFileName}/>
+                    <input type="file" id='artFile' name='artFile' className={`${styles.artFileInput}`} onChange={fileCheckAndDisplayFileName} ref={uploadedFileHiddenInputRef} />
+                    <input type="text" name='userID' value={userData.userID} className={`${styles.artFileInput}`} readOnly/>
                     {/* hidden */}
-                    <input type="text" className={`${styles.inputElement} ${errorState.file ? styles.falseInput : ''}`} readOnly value={selectedFileNameState} />
+                    <input type="text" className={`${styles.inputElement} ${fileError ? styles.falseInput : ''}`} readOnly value={selectedFileNameState} />
                     {
-                        errorState.file ?
+                        fileError ?
                             <p className={`${styles.errorMessage}`}>File must be 2MB or less and be of type .JPG/.JPEG or.PNG!</p>
                             : ''
                     }
@@ -170,9 +124,9 @@ export default function AddArt({
                 </div>
 
                 {
-                    errorState.other ?
+                    state.error ?
                         <div className={`${styles.inputSection}`}>
-                            <p className={`${styles.errorMessage}`}>{errorState.other}</p>
+                            <p className={`${styles.errorMessage}`}>{state.error}</p>
                         </div>
                         : ''
                 }
@@ -180,11 +134,11 @@ export default function AddArt({
                 <div className={`${styles.submitButtonContainer}`}>
                     <Suspense fallback={<p>Uploading Art...</p>}>
                         <Button
-                            type='button'
+                            type='submit'
                             stylingType='generic'
                             title='Upload Art'
-                            onClick={submitArt}
-                            isLoading={isUploadInProgressState}
+                            isLoading={isPending}
+                            disabled={nameError || fileError || nameUntouched || fileUntouched}
                         ></Button>
                     </Suspense>
                 </div>

@@ -1,6 +1,6 @@
 'use server';
-import { ArtCardData, UserData } from "./definitions";
-import { mockArtCardData } from "./mock-data";
+import { ArtCardData, UserData } from "../definitions";
+import { mockArtCardData } from "../mock-data";
 import { sql } from "@vercel/postgres";
 
 export async function fetchArtCards(maxCardsCount: number = 10): Promise<ArtCardData[]> {

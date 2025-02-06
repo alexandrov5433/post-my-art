@@ -10,7 +10,7 @@ import Button from "@/ui/button/button";
 import NavBar from "@/ui/nav/nav";
 import Footer from "@/ui/footer/footer";
 
-import { fetchArtCards, fetchUserData } from "@/lib/data";
+import { fetchArtCards, fetchUserData } from "@/lib/actions/data";
 import { ArtCardData } from "@/lib/definitions";
 import { getUserIDFromSessionCookie } from '@/lib/actions/session';
 import { UserData } from "@/lib/definitions";

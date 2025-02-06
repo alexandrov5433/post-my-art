@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { getUserIDFromSessionCookie } from "@/lib/actions/session";
-import { fetchUserData } from "@/lib/data";
+import { fetchUserData } from "@/lib/actions/data";
 
 import NavBar from "@/ui/nav/nav";
 import AddArt from "@/ui/addArt/addArt";
