@@ -4,7 +4,7 @@ import { sql } from "@vercel/postgres";
 
 import { ArtUploadData } from "../definitions";
 
-export async function uploadArtFile(state: { error: string }, formData: FormData) {
+export async function uploadArtFile(state: { success: boolean | null, error: string }, formData: FormData) {
     try {
         const artData: ArtUploadData = {
             artOwnerID: 0,
@@ -66,6 +66,7 @@ export async function uploadArtFile(state: { error: string }, formData: FormData
         // }
         const artCreationRes = await sql`
             INSERT INTO "Art" VALUES (
+            DEFAULT,
             ${res.url},
             ${artData.artOwnerID},
             ${artData.name},
@@ -79,12 +80,13 @@ export async function uploadArtFile(state: { error: string }, formData: FormData
 
 
 
-        // redirect user
+        // redirect user on client
+        state.error = '';
+        state.success = true;
         return state;
     } catch (err) {
-        console.log(err);
-        
         state.error = (err as Error).message;
+        state.success = false;
         return state;
     }
 }
