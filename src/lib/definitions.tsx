@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react"
 
 
 export interface ArtCardData {
@@ -43,4 +44,16 @@ export interface ArtUploadData {
     name: string,
     description: string,
     tags: Array<string>,
+}
+
+export interface PopupMessageContextData {
+    messageData: MessageData,
+    setMessageData: Dispatch<SetStateAction<MessageData>>
+}
+
+export type MessageData = {
+    isShown: boolean,
+    text: string,
+    type: 'success' | 'error' | 'neutral',
+    duration: number
 }

@@ -1,7 +1,12 @@
 'use client';
 import styles from '@/ui/button/button.module.css';
+
 import { useRouter } from 'next/navigation';
+import { PopupMessageContext } from '../popupMessage/popupMessageContext';
+import { useContext } from 'react';
+
 import Loader from '../loader/loader';
+
 
 export default function Button({
     title,
@@ -10,7 +15,8 @@ export default function Button({
     redirectToURL = null,
     onClick = null,
     disabled = false,
-    isLoading = false
+    isLoading = false,
+    msgTest = false
 }: {
     title: string,
     type: 'button' | 'submit',
@@ -18,9 +24,11 @@ export default function Button({
     redirectToURL?: string | null,
     onClick?: (() => any) | null,
     disabled?: boolean,
-    isLoading?: boolean
+    isLoading?: boolean,
+    msgTest?: boolean //TODO delete after testing
 }) {
     const router = useRouter();
+    const messageContext = useContext(PopupMessageContext)
     return (
         <button
             className={
@@ -37,6 +45,14 @@ export default function Button({
                 }
                 if (redirectToURL) {
                     router.push(redirectToURL);
+                }
+                if (msgTest) {
+                    messageContext.setMessageData({
+                        duration: 3000,
+                        isShown: true,
+                        text: `${Math.random() * 100}`,
+                        type: 'success'
+                    });
                 }
             }}
             disabled={disabled || isLoading}

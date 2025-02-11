@@ -48,7 +48,7 @@ export default async function Home() {
           <ArtCardsHomeOverview cardsData={artCards}></ArtCardsHomeOverview>
         </Suspense>
         <div className={`${artsContainerStyles.bottomButtonContainer}`}>
-          <Button type="button" stylingType="generic" title="TO DO"></Button>
+          <Button type="button" stylingType="generic" title="TO DO" msgTest={true}></Button>
         </div>
       </section>
 
