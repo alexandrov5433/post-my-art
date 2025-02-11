@@ -125,15 +125,12 @@
             }
         }
 
-        /* .note {
-            color: var(--btn-white);
-            opacity: 90%;
-        } */
-
-        /* .errorMessage {
-            background-color: var(--transparent-white);
-            border-radius: 4px;
-            padding: 0.2rem 0.5rem;
-        } */
+        .note {
+            font-size: 1rem;
+        }
+    
+        .errorMessage {
+            font-size: 1rem;
+        }
     }
 }
