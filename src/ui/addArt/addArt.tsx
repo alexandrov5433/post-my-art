@@ -83,20 +83,20 @@ export default function AddArt({
     }
 
     const [state, formAction, isPending] = useActionState(uploadArtFile, { success: null, error: '' });
-    console.log(state);
-
+    console.log('state', state);
+    
     useEffect(() => {
-        console.log(state);
+        console.log('state useEffect', state);
         if (state.success) {
             messageContext.setMessageData({
                 duration: 3000,
                 isShown: true,
-                text: 'Art piece uploaded!',
+                text: 'Your art was uploaded!',
                 type: 'success'
             });
             router.push('/home');
         }
-    }, [state]);
+    }, [state, isPending]);
 
     return (
         <main className={`${styles.mainWrapper}`}>
@@ -139,7 +139,7 @@ export default function AddArt({
                             <p className={`${styles.errorMessage}`}>File must be 2MB or less and be of type .JPG/.JPEG or.PNG!</p>
                             : ''
                     }
-                    <p className={`${styles.note}`}>Note: Only files of type .JPG/.JPEG or.PNG, with a maximum size of 2MB can be uploaded.</p>
+                    <p className={`${styles.note}`}>Note: Only files of type .JPG/.JPEG or .PNG, with a maximum size of 2MB can be uploaded.</p>
                 </div>
 
                 {

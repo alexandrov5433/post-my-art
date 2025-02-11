@@ -4,7 +4,9 @@ import { sql } from "@vercel/postgres";
 
 import { ArtUploadData } from "../definitions";
 
-export async function uploadArtFile(state: { success: boolean | null, error: string }, formData: FormData) {
+type UploadArtFileState =  { success: boolean | null, error: string };
+
+export async function uploadArtFile(state: UploadArtFileState, formData: FormData) {
     try {
         const artData: ArtUploadData = {
             artOwnerID: 0,
@@ -13,7 +15,6 @@ export async function uploadArtFile(state: { success: boolean | null, error: str
             description: '',
             tags: [],
         }
-        console.log('formData\n', [...formData.entries()]);
 
         const userId: number = Number(formData.get('userID') as string) || 0;
         const artName = (formData.get('name') as string) || '';
@@ -43,10 +44,6 @@ export async function uploadArtFile(state: { success: boolean | null, error: str
         // add returned file url to artData
         artData.artPictureURL = res.url;
 
-        console.log('res\n', res);
-        console.log('artData\n', artData);
-
-
         // add artData in DB
 
         // res
@@ -64,7 +61,7 @@ export async function uploadArtFile(state: { success: boolean | null, error: str
         //             description: '',
         //                 tags: []
         // }
-        const artCreationRes = await sql`
+        await sql`
             INSERT INTO "Art" VALUES (
             DEFAULT,
             ${res.url},
@@ -75,18 +72,16 @@ export async function uploadArtFile(state: { success: boolean | null, error: str
             DEFAULT,
             DEFAULT
             )`;
-        console.log('artCreationRes\n', artCreationRes);
-        // TODO fix error userID must be added auto
-
-
 
         // redirect user on client
-        state.error = '';
-        state.success = true;
-        return state;
+        return {
+            success: true,
+            error: ''
+        } as UploadArtFileState;
     } catch (err) {
-        state.error = (err as Error).message;
-        state.success = false;
-        return state;
+        return {
+            success: false,
+            error: (err as Error).message
+        } as UploadArtFileState;
     }
 }
