@@ -27,12 +27,10 @@ export default function Footer({
                         <li className={`${styles.usefulLink}`}><Link href="/about">About</Link></li>
                         {
                             userData === null ?
+                                <>
                                 <li className={`${styles.usefulLink}`}><Link href="/login">Login</Link></li>
-                                : ''
-                        }
-                        {
-                            userData === null ?
                                 <li className={`${styles.usefulLink}`}><Link href="/register">Rgister</Link></li>
+                                </>
                                 : ''
                         }
                         <li className={`${styles.usefulLink}`}><Link href="/terms-and-conditions">Terms and Conditions</Link></li>
