@@ -1,7 +1,7 @@
 'use client';
 import { useContext, useEffect, useState } from "react";
 
-import { PopupMessageContext } from "./popupMessageContext";
+import { PopupMessageContext } from "../../lib/context/popupMessageContext";
 
 import styles from '@/ui/popupMessage/popupMessage.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
