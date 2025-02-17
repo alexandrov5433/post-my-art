@@ -4,6 +4,7 @@ import { getUserIDFromSessionCookie } from "@/lib/actions/session";
 import { fetchUserData } from "@/lib/actions/data";
 
 import NavBar from "@/ui/nav/nav";
+import Footer from "@/ui/footer/footer";
 import AddArt from "@/ui/addArt/addArt";
 import { UserData } from "@/lib/definitions";
 
@@ -17,6 +18,7 @@ export default async function AddArtPage() {
         <>
             <NavBar userData={userData}></NavBar>
             <AddArt userData={userData}></AddArt>
+            <Footer></Footer>
         </>
     );
 }

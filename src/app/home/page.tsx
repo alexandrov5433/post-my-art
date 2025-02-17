@@ -52,9 +52,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section>
-        <Footer userData={userData}></Footer>
-      </section>
+      {/* <section> */}
+      <Footer></Footer>
+        {/* <Footer userData={userData}></Footer> */}
+      {/* </section> */}
 
     </main>
   </>

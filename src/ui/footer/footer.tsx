@@ -2,15 +2,14 @@ import Link from 'next/link';
 
 import { UserData } from '@/lib/definitions';
 import styles from '@/ui/footer/footer.module.css';
-import ProfileIcon from '../svgs/profile';
 import LinkedinIcon from '../svgs/linkedin';
 import DiscordIcon from '../svgs/discord';
 import GithubIcon from '../svgs/github';
 
 export default function Footer({
-    userData
+    // userData
 }: {
-    userData: UserData | null
+    // userData: UserData | null
 }) {
     return (
         <div className={`${styles.allContainer}`}>
@@ -25,14 +24,14 @@ export default function Footer({
                     <ul>
                         <li className={`${styles.usefulLink}`}><Link href="/contact-us">Contact Us</Link></li>
                         <li className={`${styles.usefulLink}`}><Link href="/about">About</Link></li>
-                        {
+                        {/* {
                             userData === null ?
                                 <>
                                 <li className={`${styles.usefulLink}`}><Link href="/login">Login</Link></li>
                                 <li className={`${styles.usefulLink}`}><Link href="/register">Rgister</Link></li>
                                 </>
                                 : ''
-                        }
+                        } */}
                         <li className={`${styles.usefulLink}`}><Link href="/terms-and-conditions">Terms and Conditions</Link></li>
                         <li className={`${styles.usefulLink}`}><Link href="/privacy">Privacy Policy</Link></li>
                     </ul>
