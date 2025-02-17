@@ -1,5 +1,7 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Search from '../search/search';
 import Button from '../button/button';
 
@@ -23,6 +25,7 @@ export default function NavBar({
     const toggleMenuHiddenClass = () => {
         setMenuOpen(!isMenuOpen);
     }
+    const pathname = usePathname();
     return (
         <div className={styles.container}>
 
@@ -57,11 +60,11 @@ export default function NavBar({
                                     title={userData.username}
                                     onClick={toggleMenuHiddenClass}
                                 ></Button>
-                                <FontAwesomeIcon icon={faBars} className={`${styles.menuIcon}`}/>
+                                <FontAwesomeIcon icon={faBars} className={`${styles.menuIcon}`} />
                             </div>
                             <div className={`${styles.menu} ${isMenuOpen ? '' : styles.hide}`}>
                                 <div className={`${styles.item}`}>
-                                    <FontAwesomeIcon icon={faUser} className={`${styles.icon}`}/>
+                                    <FontAwesomeIcon icon={faUser} className={`${styles.icon}`} />
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
@@ -70,7 +73,7 @@ export default function NavBar({
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
-                                    <FontAwesomeIcon icon={faPlus} className={`${styles.icon}`}/>
+                                    <FontAwesomeIcon icon={faPlus} className={`${styles.icon}`} />
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
@@ -79,8 +82,8 @@ export default function NavBar({
                                     ></Button>
                                 </div>
                                 <div className={`${styles.item}`}>
-                                    
-                                <FontAwesomeIcon icon={faArrowRightFromBracket} className={`${styles.icon}`}/>
+
+                                    <FontAwesomeIcon icon={faArrowRightFromBracket} className={`${styles.icon}`} />
                                     <Button
                                         type='button'
                                         stylingType='userMenuItem'
@@ -111,10 +114,18 @@ export default function NavBar({
 
             <nav className={styles.nav}>
                 <ul className={`${styles.unorderedList}`}>
-                    <li className={`${styles.listElement}`}><a className={`${styles.anchor} ${styles.active}`} href="#">Home</a></li>
-                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">Browse</a></li>
-                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">About</a></li>
-                    <li className={`${styles.listElement}`}><a className={`${styles.anchor}`} href="#">Contact</a></li>
+                    <li className={`${styles.listElement}`}>
+                        <Link className={`${styles.anchor} ${pathname === '/home' ? styles.active : ''}`} href="/home">Home</Link>
+                    </li>
+                    <li className={`${styles.listElement}`}>
+                        <Link className={`${styles.anchor} ${pathname === '/browse' ? styles.active : ''}`} href="/browse">Browse</Link>
+                    </li>
+                    <li className={`${styles.listElement}`}>
+                        <Link className={`${styles.anchor} ${pathname === '/about' ? styles.active : ''}`} href="/about">About</Link>
+                    </li>
+                    <li className={`${styles.listElement}`}>
+                        <Link className={`${styles.anchor} ${pathname === '/contact' ? styles.active : ''}`} href="/contact">Contact</Link>
+                    </li>
                 </ul>
             </nav>
 
