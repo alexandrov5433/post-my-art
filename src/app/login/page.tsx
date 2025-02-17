@@ -3,12 +3,31 @@ import Button from '@/ui/button/button';
 import styles from '@/ui/styles/login.module.css';
 import ArrowLeft from '@/ui/svgs/arrow_left';
 import Link from 'next/link';
-import { useActionState, useState } from 'react';
+import { useActionState, useContext, useEffect, useState } from 'react';
 import { login } from '@/lib/actions/user';
+import { PopupMessageContext } from '@/lib/context/popupMessageContext';
+import { useRouter } from 'next/navigation';
+import { UserDataContext } from '@/lib/context/userDataContext';
 
 export default function Login() {
     const [state, formAction, pending] = useActionState(login, null);
     const [formValues, setValues] = useState({ username: '' });
+    const messageContext = useContext(PopupMessageContext);
+    const userDataContext = useContext(UserDataContext);
+    const router = useRouter();
+    useEffect(() => {
+        if (state?.success) {
+            messageContext.setMessageData({
+                duration: 3000,
+                isShown: true,
+                text: 'Wellcome home!',
+                type: 'success'
+            });
+            userDataContext.setTriggerUserDataRefresh(!userDataContext.userDataRefreshTrigger);
+            router.push('/home');
+        }
+    }, [state]);
+
     return (
         <main className={`${styles.mainContainer}`}>
             <form className={`${styles.container}`} action={formAction}>

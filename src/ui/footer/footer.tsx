@@ -1,18 +1,20 @@
+'use client';
+
 import Link from 'next/link';
 
-import { UserData } from '@/lib/definitions';
 import styles from '@/ui/footer/footer.module.css';
 import LinkedinIcon from '../svgs/linkedin';
 import DiscordIcon from '../svgs/discord';
 import GithubIcon from '../svgs/github';
 
-export default function Footer({
-    // userData
-}: {
-    // userData: UserData | null
-}) {
+import { useContext } from 'react';
+import { UserDataContext } from '@/lib/context/userDataContext';
+
+
+export default function Footer() {
+    const userDataContext = useContext(UserDataContext);
     return (
-        <div className={`${styles.allContainer}`}>
+        <footer className={`${styles.allContainer}`}>
             <section className={`${styles.content}`}>
                 <article className={`${styles.about}`}>
                     <h4 className={`${styles.title}`}>About Us</h4>
@@ -24,14 +26,14 @@ export default function Footer({
                     <ul>
                         <li className={`${styles.usefulLink}`}><Link href="/contact-us">Contact Us</Link></li>
                         <li className={`${styles.usefulLink}`}><Link href="/about">About</Link></li>
-                        {/* {
-                            userData === null ?
+                        {
+                            userDataContext.userData === null ?
                                 <>
-                                <li className={`${styles.usefulLink}`}><Link href="/login">Login</Link></li>
-                                <li className={`${styles.usefulLink}`}><Link href="/register">Rgister</Link></li>
+                                    <li className={`${styles.usefulLink}`}><Link href="/login">Login</Link></li>
+                                    <li className={`${styles.usefulLink}`}><Link href="/register">Rgister</Link></li>
                                 </>
                                 : ''
-                        } */}
+                        }
                         <li className={`${styles.usefulLink}`}><Link href="/terms-and-conditions">Terms and Conditions</Link></li>
                         <li className={`${styles.usefulLink}`}><Link href="/privacy">Privacy Policy</Link></li>
                     </ul>
@@ -65,6 +67,6 @@ export default function Footer({
                 <Link href="https://github.com/alexandrov5433"><p className={`${styles.paragraph} ${styles.link}`}>Developed by Alex</p></Link>
                 <p className={`${styles.paragraph}`}>The visuals of this website are inspired by <Link href="https://www.showyourarts.com/" className={`${styles.link}`}>showyourarts.com</Link>. The creator of Post My Art does not claim any rights on <Link href="https://www.showyourarts.com/">showyourarts.com</Link></p>
             </section>
-        </div>
+        </footer>
     );
 }

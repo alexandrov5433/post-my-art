@@ -1,22 +1,18 @@
 'use client';
-import { useState, useRef, Suspense, useEffect, useActionState, useContext } from 'react';
+import { useState, useRef, useEffect, useActionState, useContext } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { UserData, ArtUploadData } from '@/lib/definitions';
 import styles from '@/ui/addArt/add-art.module.css';
 import Button from '../button/button';
 
 import { uploadArtFile } from '@/lib/actions/file';
-import { PopupMessageContext } from '../popupMessage/popupMessageContext';
+import { PopupMessageContext } from '../../lib/context/popupMessageContext';
+import { UserDataContext } from '@/lib/context/userDataContext';
 
 const FILE_SIZE_LIMIT: number = 2100000 //2MB (2097152) rounded up
 
-export default function AddArt({
-    userData
-}: {
-    userData: UserData
-}) {
+export default function AddArt() {
     const [charsLeft, setCharsLeft] = useState(100);
     const [nameError, setNameError] = useState(false);
     const [nameUntouched, setNameUntouched] = useState(true);
@@ -28,6 +24,7 @@ export default function AddArt({
     const uploadedFileHiddenInputRef = useRef(null);
 
     const messageContext = useContext(PopupMessageContext);
+    const userDataContext = useContext(UserDataContext);
     const router = useRouter();
 
     const calcCharsLeft = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,7 +128,7 @@ export default function AddArt({
                     <label htmlFor="artFile" className={`${styles.artSecondLabel}`}>Select File</label>
                     {/* hidden */}
                     <input type="file" id='artFile' name='artFile' className={`${styles.artFileInput}`} onChange={fileCheckAndDisplayFileName} ref={uploadedFileHiddenInputRef} />
-                    <input type="text" name='userID' value={userData.userID} className={`${styles.artFileInput}`} readOnly />
+                    <input type="text" name='userID' value={userDataContext?.userData?.userID} className={`${styles.artFileInput}`} readOnly />
                     {/* hidden */}
                     <input type="text" className={`${styles.inputElement} ${fileError ? styles.falseInput : ''}`} readOnly value={selectedFileNameState} />
                     {

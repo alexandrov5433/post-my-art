@@ -1,31 +1,35 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import Search from '../search/search';
-import Button from '../button/button';
+import { usePathname, useRouter } from 'next/navigation';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faPlus, faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
-
+import Search from '../search/search';
+import Button from '../button/button';
 import PostMyArtLogo from '../../../public/postMyArtLogo.png';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { logout } from '@/lib/actions/user';
 import styles from '@/ui/nav/nav.module.css';
-import { UserData } from '@/lib/definitions';
+import { UserDataContext } from '@/lib/context/userDataContext';
 
-export default function NavBar({
-    userData
-}: {
-    userData: UserData | null
-}) {
+export default function NavBar() {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const toggleMenuHiddenClass = () => {
         setMenuOpen(!isMenuOpen);
     }
     const pathname = usePathname();
+    const userDataContext = useContext(UserDataContext);
+    const userData = userDataContext.userData;
+    const router = useRouter();
+    const onLogout = async () => {
+        await logout();
+        userDataContext.setTriggerUserDataRefresh(!userDataContext.userDataRefreshTrigger);
+        router.push('/home');
+    }
     return (
         <div className={styles.container}>
 
@@ -88,7 +92,7 @@ export default function NavBar({
                                         type='button'
                                         stylingType='userMenuItem'
                                         title='Logout'
-                                        onClick={logout}
+                                        onClick={onLogout}
                                     ></Button>
                                 </div>
                             </div>

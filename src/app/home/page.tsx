@@ -10,20 +10,13 @@ import Button from "@/ui/button/button";
 import NavBar from "@/ui/nav/nav";
 import Footer from "@/ui/footer/footer";
 
-import { fetchArtCards, fetchUserData } from "@/lib/actions/data";
+import { fetchArtCards } from "@/lib/actions/data";
 import { ArtCardData } from "@/lib/definitions";
-import { getUserIDFromSessionCookie } from '@/lib/actions/session';
-import { UserData } from "@/lib/definitions";
 
 export default async function Home() {
   const artCards: Promise<ArtCardData[]> = fetchArtCards(10);
-  const userID = await getUserIDFromSessionCookie();
-  let userData: UserData | null = null;
-  if (userID) {
-    userData = await fetchUserData(userID);
-  }
   return (<>
-    <NavBar userData={userData}></NavBar>
+    <NavBar></NavBar>
     <main>
 
       <section className={`${homeBannerStyles.homeBannerWrapper}`}>
@@ -52,12 +45,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* <section> */}
-      <Footer></Footer>
-        {/* <Footer userData={userData}></Footer> */}
-      {/* </section> */}
-
     </main>
+
+    <Footer></Footer>
   </>
   );
 }

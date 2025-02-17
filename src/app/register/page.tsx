@@ -8,12 +8,31 @@ import Link from 'next/link';
 import paintingHand from '../../../public/hand-painting.png';
 import goldenFrame from '../../../public/golden-frame.png';
 import paintingsExhibition from '../../../public/paintings-exhibition.png';
-import { useActionState, useState } from 'react';
+import { useActionState, useContext, useEffect, useState } from 'react';
 import { register } from '@/lib/actions/user';
+import { useRouter } from 'next/navigation';
+import { PopupMessageContext } from '@/lib/context/popupMessageContext';
+import { UserDataContext } from '@/lib/context/userDataContext';
 
 export default function Register() {
     const [state, formAction, pending] = useActionState(register, null);
     const [formValues, setValues] = useState({ username: '', email: '' });
+    const messageContext = useContext(PopupMessageContext);
+    const userDataContext = useContext(UserDataContext);
+    const router = useRouter();
+    useEffect(() => {
+        if (state?.success) {
+            messageContext.setMessageData({
+                duration: 3000,
+                isShown: true,
+                text: 'Registration successful!',
+                type: 'success'
+            });
+            userDataContext.setTriggerUserDataRefresh(!userDataContext.userDataRefreshTrigger);
+            router.push('/home');
+        }
+    }, [state]);
+    
     return (
         <main className={`${styles.mainContainer}`}>
             <article className={`${styles.infoContainer}`}>

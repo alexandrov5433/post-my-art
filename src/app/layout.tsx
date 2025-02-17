@@ -4,8 +4,9 @@ import "@/ui/styles/global/reset.css"
 import "@/ui/styles/global/typography.css"
 import { roboto, charm } from "@/ui/fonts";
 
-import { PopupMessageProvider } from "@/ui/popupMessage/popupMessageContext";
+import { PopupMessageProvider } from "@/lib/context/popupMessageContext";
 import PopupMessage from "@/ui/popupMessage/popupMessage";
+import { UserDataContextProvider } from "@/lib/context/userDataContext";
 
 export const metadata: Metadata = {
   title: "Post My Art",
@@ -20,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} ${charm.variable}`}>
       <PopupMessageProvider>
-        <body>
-          {children}
-          <PopupMessage></PopupMessage>
-        </body>
+        <UserDataContextProvider>
+          <body>
+            {children}
+            <PopupMessage></PopupMessage>
+          </body>
+        </UserDataContextProvider>
       </PopupMessageProvider>
     </html>
   );

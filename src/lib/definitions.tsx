@@ -57,3 +57,9 @@ export type MessageData = {
     type: 'success' | 'error' | 'neutral',
     duration: number
 }
+
+export interface UserDataContextData {
+    userData: UserData | null,
+    userDataRefreshTrigger: boolean,
+    setTriggerUserDataRefresh: Dispatch<SetStateAction<boolean>>
+};

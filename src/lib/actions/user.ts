@@ -3,7 +3,6 @@ import { sql } from "@vercel/postgres";
 import bcrypt from 'bcrypt';
 import z from 'zod';
 import { genJWTAndSetSessionCookie, deleteSessionCookie } from "./session";
-import { redirect } from "next/navigation";
 
 
 const UserRegistrationFormSchema = z.object({
@@ -42,7 +41,7 @@ export async function register(
     formData: FormData
 ) {
     const rememberMe = Boolean(formData.get('rememberAccount'));
-    previousState = {
+    const newState = {
         success: false,
         username: {
             msg: '',
@@ -74,17 +73,17 @@ export async function register(
     });
     if (!result.success) {
         // return false state with errors
-        previousState.success = false;
+        newState.success = false;
         result.error.issues.forEach(err => {
             if (!err.path[0]) {
                 // case repass
-                previousState.repass.msg = err.message;
+                newState.repass.msg = err.message;
             } else {
                 const pathName: string = err.path[0].toString();
-                ((previousState as any)[pathName] as PreviousStateProp).msg = err.message;
+                ((newState as any)[pathName] as PreviousStateProp).msg = err.message;
             }
         });
-        return previousState;
+        return newState;
     }
     try {
         // add default user pic url
@@ -120,25 +119,26 @@ export async function register(
         }
         // generate JWT and set cookie
         await genJWTAndSetSessionCookie(rows[0]?.userID, rememberMe);
+        newState.success = true;
+        return newState;
     } catch (err) {
-        previousState.success = false;
-        previousState.other.msg = (err as Error).message;
+        newState.success = false;
+        newState.other.msg = (err as Error).message;
         console.error((err as Error).message);
-        return previousState;
+        return newState;
     }
-    redirect('/home');
 }
 
 export async function login(
     previousState: {
-        success: boolean,
+        success: boolean | null,
         username: PreviousStateProp,
         password: PreviousStateProp,
         other: PreviousStateProp
     } | null,
     formData: FormData
 ) {
-    previousState = {
+    const newState = {
         success: false,
         username: {
             msg: '',
@@ -159,28 +159,29 @@ export async function login(
     try {
         const { rows } = await sql`SELECT ("userID", username, password) FROM "User" WHERE (username = ${usernameToCheck});`;
         if (!rows[0]?.row) {
-            previousState.success = false;
-            previousState.username.msg = `Could not find a user with username: "${usernameToCheck}".`;
-            previousState.username.previousValue = usernameToCheck;
-            return previousState;
+            newState.success = false;
+            newState.username.msg = `Could not find a user with username: "${usernameToCheck}".`;
+            newState.username.previousValue = usernameToCheck;
+            return newState;
         }
         const [id, username, hash] = rows[0].row.slice(1, rows[0].row.length - 1).split(',');
         const passwordsMatch = await bcrypt.compare(passwordToCheck, hash);
         if (!passwordsMatch) {
-            previousState.success = false;
-            previousState.password.msg = 'Incorrect password.';
-            previousState.username.previousValue = usernameToCheck;
-            return previousState;
+            newState.success = false;
+            newState.password.msg = 'Incorrect password.';
+            newState.username.previousValue = usernameToCheck;
+            return newState;
         }
         await genJWTAndSetSessionCookie(id, rememberMe);
+        newState.success = true;
+        return newState;
     } catch (err) {
         console.error(err);
-        previousState.success = false;
-        previousState.other.msg = (err as Error).message;
-        previousState.username.previousValue = usernameToCheck;
-        return previousState;
+        newState.success = false;
+        newState.other.msg = (err as Error).message;
+        newState.username.previousValue = usernameToCheck;
+        return newState;
     }
-    redirect('/home');
 }
 
 export async function logout() {
